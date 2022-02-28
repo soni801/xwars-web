@@ -1,12 +1,25 @@
-// Fonts
+/* STYLESHEET TABLE OF CONTENTS
+    1. Declarations
+        1.1 Fonts
+        1.2 Variables
+    2. Global styling
+    3. Utility classes
+ */
+
+// 1.1 Fonts
 @font-face
 {
     font-family: 'uni 05_53';
     src: url("/assets/uni 05_53.ttf");
 }
 
-// Global styling
+// 2. Global styling
 body
 {
     font-family: "uni 05_53", sans-serif;
 }
+
+// 3. Utility classes
+.border { border: 2px solid gray; }
+.content-width { width: fit-content; }
+.flex { display: flex; }

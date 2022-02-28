@@ -1,1 +1,6 @@
 <p>play works!</p>
+<div class="border content-width">
+    <div class="flex" *ngFor="let row of fields">
+        <app-field *ngFor="let field of row"></app-field>
+    </div>
+</div>
