@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PlayComponent implements OnInit
 {
     fields: number[][] = [];
+    private zoom = 1;
 
     constructor() { }
 
@@ -19,5 +20,12 @@ export class PlayComponent implements OnInit
             for (let j = 0; j < 20; j++) row.push(1);
             this.fields.push(row);
         }
+
+        document.querySelector("#fields")!.addEventListener('wheel', e =>
+        {
+            const delta = (<WheelEvent>e).deltaY;
+            const newZoom = this.zoom += delta * .01;
+            (<HTMLAreaElement>document.querySelector("#zoom")).style.transform = `scale(${newZoom})`;
+        });
     }
 }

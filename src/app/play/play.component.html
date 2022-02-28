@@ -1,6 +1,8 @@
-<div class="border content-width">
-    <div class="flex" *ngFor="let row of fields">
-        <app-field *ngFor="let field of row"></app-field>
+<div id="fields" class="content-width" cdkDrag>
+    <div id="zoom" class="border">
+        <div class="flex" *ngFor="let row of fields">
+            <app-field *ngFor="let field of row"></app-field>
+        </div>
     </div>
 </div>
 <div id="game-stats">
