@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PlayComponent } from './play/play.component';
-import { FieldComponent } from './field/field.component';
+import { TileComponent } from './tile/tile.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
@@ -15,7 +15,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     HomeComponent,
     NotFoundComponent,
     PlayComponent,
-    FieldComponent
+    TileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-<div id="fields" class="content-width" cdkDrag>
+<div id="field" class="content-width" cdkDrag> <!-- TODO: Check why panning doesn't work as expected on this -->
     <div id="zoom" class="border">
-        <div class="flex" *ngFor="let row of fields">
-            <app-field *ngFor="let field of row"></app-field>
+        <div class="flex" *ngFor="let row of tiles">
+            <app-tile *ngFor="let tile of row"></app-tile>
         </div>
     </div>
 </div>

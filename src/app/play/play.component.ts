@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Tile} from "../models/tile.models";
 
 @Component({
     selector: 'app-play',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayComponent implements OnInit
 {
-    fields: number[][] = [];
+    tiles: Tile[][] = [];
     private zoom = 1;
 
     constructor() { }
@@ -17,8 +18,11 @@ export class PlayComponent implements OnInit
         for (let i = 0; i < 10; i++)
         {
             const row = [];
-            for (let j = 0; j < 20; j++) row.push(1);
-            this.fields.push(row);
+            for (let j = 0; j < 20; j++) row.push({
+                owner: 0,
+                skin: 0
+            });
+            this.tiles.push(row);
         }
 
         document.querySelector("app-play")!.addEventListener('wheel', e =>
