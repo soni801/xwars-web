@@ -1,12 +1,15 @@
 /* STYLESHEET TABLE OF CONTENTS
     1. Declarations
-        1.1 Fonts
-        1.2 Variables
+        1.1 Variables
+        1.2 Fonts
     2. Global styling
     3. Utility classes
  */
 
-// 1.1 Fonts
+// 1.1 Variables
+@use "variables";
+
+// 1.2 Fonts
 @font-face
 {
     font-family: 'uni 05_53';
@@ -16,10 +19,13 @@
 // 2. Global styling
 body
 {
+    margin: 0;
+    background: variables.$background;
+    color: variables.$foreground;
     font-family: "uni 05_53", sans-serif;
 }
 
 // 3. Utility classes
-.border { border: 2px solid gray; }
+.border { border: 2px solid variables.$border-color; }
 .content-width { width: fit-content; }
 .flex { display: flex; }

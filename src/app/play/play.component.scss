@@ -1,0 +1,23 @@
+@use "/src/variables";
+
+#game-stats
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    background: variables.$background-alternative;
+    border-top: 8px solid variables.$border-color;
+
+    &::before
+    {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 0;
+        width: 50%;
+        height: 8px;
+        background: linear-gradient(90deg, #3ba3a1, transparent);
+    }
+}
