@@ -21,11 +21,13 @@ export class PlayComponent implements OnInit
             this.fields.push(row);
         }
 
-        document.querySelector("#fields")!.addEventListener('wheel', e =>
+        document.querySelector("app-play")!.addEventListener('wheel', e =>
         {
             const delta = (<WheelEvent>e).deltaY;
-            const newZoom = this.zoom += delta * .01;
-            (<HTMLAreaElement>document.querySelector("#zoom")).style.transform = `scale(${newZoom})`;
+            this.zoom += delta * .01;
+            if (this.zoom < 0.3) this.zoom = 0.3; // Minimum zoom
+            if (this.zoom > 3) this.zoom = 3; // Maximum zoom
+            (<HTMLAreaElement>document.querySelector("#zoom")).style.transform = `scale(${this.zoom})`;
         });
     }
 }
