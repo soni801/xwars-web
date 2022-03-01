@@ -7,21 +7,35 @@ import {Tile} from "./models/tile.models";
 })
 export class GameService
 {
-    tiles: Tile[][] = [];
-    players: Player[] = [
-        {
-            name: "Player 1",
-            color: "#ff0000"
-        },
-        {
-            name: "Player 2",
-            color: "#0000ff"
-        }
-    ];
-    turn = 1;
-    currentPlayer = 0;
+    tiles!: Tile[][];
+    players!: Player[];
+    board = {
+        width: 30,
+        height: 15
+    };
+    turn!: number;
+    currentPlayer!: number;
 
-    constructor() { }
+    constructor() {
+        this.reset();
+    }
+
+    reset(): void
+    {
+        this.tiles = [];
+        this.players = [
+            {
+                name: "Player 1",
+                color: "#ff0000"
+            },
+            {
+                name: "Player 2",
+                color: "#0000ff"
+            }
+        ];
+        this.turn = 1;
+        this.currentPlayer = 0;
+    }
 
     takeTile(tile: Tile): void
     {
