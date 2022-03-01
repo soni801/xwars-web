@@ -10,14 +10,13 @@
     background: variables.$background-alternative;
     border-top: 8px solid variables.$border-color;
 
-    &::before
+    // Player color gradient
+    #gradient
     {
-        content: '';
         position: absolute;
         top: -8px;
         left: 0;
         width: 50%;
         height: 8px;
-        background: linear-gradient(90deg, #3ba3a1, transparent);
     }
 }

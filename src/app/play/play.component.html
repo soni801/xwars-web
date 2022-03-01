@@ -6,6 +6,7 @@
     </div>
 </div>
 <div id="game-stats">
+    <div id="gradient" style="background: linear-gradient(90deg, {{this.gameService.players[this.gameService.currentPlayer].color}}, transparent)"></div>
     <h3>Turn {{this.gameService.turn}}</h3>
-    <h1>{{this.gameService.players[gameService.currentPlayer].name}}</h1>
+    <h1>{{this.gameService.players[this.gameService.currentPlayer].name}}</h1>
 </div>
