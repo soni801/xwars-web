@@ -10,6 +10,7 @@ export class PlayComponent implements OnInit
 {
     tiles: Tile[][] = [];
     private zoom = 1;
+    dragging = false;
 
     constructor() { }
 

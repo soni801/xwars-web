@@ -1,1 +1,6 @@
-<div class="border"></div>
+<div class="border">
+    <img src="/assets/cross.png" alt="cross" *ngIf="this.tile.owner != 0" [ngClass]="{
+        'red': this.tile.owner == 1,
+        'blue': this.tile.owner == 2
+    }">
+</div>

@@ -1,7 +1,7 @@
-<div id="field" class="content-width" cdkDrag> <!-- TODO: Check why panning doesn't work as expected on this -->
+<div id="field" class="content-width" cdkDrag (cdkDragStarted)="dragging = true"> <!-- TODO: Check why panning doesn't work as expected on this -->
     <div id="zoom" class="border">
         <div class="flex" *ngFor="let row of tiles">
-            <app-tile *ngFor="let tile of row"></app-tile>
+            <app-tile *ngFor="let tile of row" (click)="!dragging ? tile.owner = 1 : dragging = false" [tile]="tile"></app-tile>
         </div>
     </div>
 </div>

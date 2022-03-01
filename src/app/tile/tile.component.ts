@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Tile} from "../models/tile.models";
 
 @Component({
     selector: 'app-tile',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TileComponent implements OnInit
 {
+    @Input() tile!: Tile;
+
     constructor() { }
 
     ngOnInit(): void {
