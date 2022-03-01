@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Tile} from "../models/tile.models";
+import {GameService} from "../game.service";
 
 @Component({
     selector: 'app-play',
@@ -8,11 +8,12 @@ import {Tile} from "../models/tile.models";
 })
 export class PlayComponent implements OnInit
 {
-    tiles: Tile[][] = [];
     private zoom = 1;
     dragging = false;
 
-    constructor() { }
+    constructor(
+        public gameService: GameService
+    ) { }
 
     ngOnInit(): void
     {
@@ -20,10 +21,10 @@ export class PlayComponent implements OnInit
         {
             const row = [];
             for (let j = 0; j < 20; j++) row.push({
-                owner: 0,
+                owner: -1,
                 skin: 0
             });
-            this.tiles.push(row);
+            this.gameService.tiles.push(row);
         }
 
         document.querySelector("app-play")!.addEventListener('wheel', e =>

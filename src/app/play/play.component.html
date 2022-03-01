@@ -1,11 +1,11 @@
 <div id="field" class="content-width" cdkDrag (cdkDragStarted)="dragging = true"> <!-- TODO: Check why panning doesn't work as expected on this -->
     <div id="zoom" class="border">
-        <div class="flex" *ngFor="let row of tiles">
-            <app-tile *ngFor="let tile of row" (click)="!dragging ? tile.owner = 1 : dragging = false" [tile]="tile"></app-tile>
+        <div class="flex" *ngFor="let row of gameService.tiles">
+            <app-tile *ngFor="let tile of row" (click)="!dragging ? gameService.takeTile(tile) : dragging = false" [tile]="tile"></app-tile>
         </div>
     </div>
 </div>
 <div id="game-stats">
-    <h3>Turn 0</h3>
-    <h1>Player 0</h1>
+    <h3>Turn {{this.gameService.turn}}</h3>
+    <h1>{{this.gameService.players[gameService.currentPlayer].name}}</h1>
 </div>
