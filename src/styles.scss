@@ -3,7 +3,8 @@
         1.1 Variables
         1.2 Fonts
     2. Global styling
-    3. Utility classes
+    3. Buttons
+    4. Utility classes
  */
 
 // 1.1 Variables
@@ -26,7 +27,20 @@ body
     overflow: hidden;
 }
 
-// 3. Utility classes
+// 3. Buttons
+.button
+{
+    font-size: 2rem;
+    color: variables.$button;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 200ms ease;
+
+    &:hover { opacity: .6; }
+    &:active { opacity: .3; }
+}
+
+// 4. Utility classes
 .border { border: 2px solid variables.$border-color; }
 .content-width { width: fit-content; }
 .flex { display: flex; }
