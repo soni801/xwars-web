@@ -1,5 +1,7 @@
+import {Player} from "./player.models";
+
 export interface Tile
 {
-    owner: number,
+    owner: Player,
     skin: number
 }

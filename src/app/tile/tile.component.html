@@ -1,6 +1,3 @@
 <div class="border">
-    <img src="/assets/cross.png" alt="cross" *ngIf="this.tile.owner != -1" [ngClass]="{
-        'red': this.tile.owner == 0,
-        'blue': this.tile.owner == 1
-    }">
+    <img src="/assets/cross.png" alt="cross" *ngIf="this.tile.owner.name != ''" style="{{this.tile.owner.filter}}">
 </div>

@@ -22,7 +22,11 @@ export class PlayComponent implements OnInit
         {
             const row = [];
             for (let j = 0; j < this.gameService.board.width; j++) row.push({
-                owner: -1,
+                owner: {
+                    name: "",
+                    color: "",
+                    filter: ""
+                },
                 skin: 0
             });
             this.gameService.tiles.push(row);

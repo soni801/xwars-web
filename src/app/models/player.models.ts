@@ -1,5 +1,6 @@
 export interface Player
 {
     name: string,
-    color: string
+    color: string,
+    filter: string
 }
