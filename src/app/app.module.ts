@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PlayComponent } from './play/play.component';
 import { TileComponent } from './tile/tile.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     HomeComponent,
     NotFoundComponent,
     PlayComponent,
-    TileComponent
+    TileComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
