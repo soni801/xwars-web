@@ -40,11 +40,23 @@ a
 }
 
 // 3.2 Buttons
-.button
+.button // Menu buttons, e.g. play and about
 {
     font-size: 2rem;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+button // UI buttons, e.g. end turn
+{
+    height: fit-content; // For correct scaling in flex (e.g. end turn button)
+    padding: .5rem 1rem;
+    color: variables.$foreground;
+    background: variables.$background;
+    border: none;
+    border-radius: 1rem;
+    font-family: "uni 05_53", sans-serif;
+    font-size: 1.5rem;
 }
 
 // 4 Utility classes

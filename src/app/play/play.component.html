@@ -1,3 +1,4 @@
+<!-- Playing field -->
 <div id="field" class="content-width" cdkDrag (cdkDragStarted)="dragging = true"> <!-- TODO: Check why panning doesn't work as expected on this -->
     <div id="zoom" class="border">
         <div class="flex" *ngFor="let row of gameService.tiles">
@@ -5,8 +6,18 @@
         </div>
     </div>
 </div>
+
+<!-- Game statistics -->
 <div id="game-stats">
+    <!-- The color of the current player -->
     <div id="gradient" style="background: linear-gradient(90deg, {{this.gameService.players[this.gameService.currentPlayer].color}}, transparent)"></div>
-    <h3>Turn {{this.gameService.turn}}</h3>
-    <h1>{{this.gameService.players[this.gameService.currentPlayer].name}}</h1>
+
+    <!-- Turn data -->
+    <div>
+        <h3>Turn {{this.gameService.turn}}</h3>
+        <h1>{{this.gameService.players[this.gameService.currentPlayer].name}}</h1>
+    </div>
+
+    <!-- Actions -->
+    <button>End turn</button>
 </div>
