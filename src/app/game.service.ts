@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Player} from "./models/player.models";
 import {Tile} from "./models/tile.models";
-import {Color} from "./utils/Color.utils";
-import {Solver} from "./utils/Solver.utils";
 
 @Injectable({
     providedIn: 'root'
@@ -28,13 +26,11 @@ export class GameService
         this.players = [
             {
                 name: "Player 1",
-                color: "#ee5555",
-                filter: GameService.hexFilter("#ee5555")
+                color: "#ee5555"
             },
             {
                 name: "Player 2",
-                color: "#5555ee",
-                filter: GameService.hexFilter("#5555ee")
+                color: "#5555ee"
             }
         ];
         this.turn = 1;
@@ -43,11 +39,13 @@ export class GameService
 
     takeTile(tile: Tile): void
     {
-        if (tile.owner.name == "")
+        // Make sure that the tile is not already taken
+        if (!tile.owner)
         {
             tile.owner = this.players[this.currentPlayer];
             this.nextPlayer();
         }
+        // TODO: Notify user if the tile is taken
     }
 
     nextPlayer(): void
@@ -58,15 +56,5 @@ export class GameService
             this.currentPlayer = 0;
             this.turn++;
         }
-    }
-
-    private static hexFilter(hex: string): string
-    {
-        const rgb = Color.hexToRgb(hex);
-
-        const color = new Color(rgb[0], rgb[1], rgb[2]);
-        const solver = new Solver(color);
-
-        return solver.solve();
     }
 }

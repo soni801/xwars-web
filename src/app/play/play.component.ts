@@ -20,21 +20,19 @@ export class PlayComponent implements OnInit
 
     ngOnInit(): void
     {
+        // Initialise tiles
         this.gameService.reset();
         for (let i = 0; i < this.gameService.board.height; i++)
         {
             const row = [];
             for (let j = 0; j < this.gameService.board.width; j++) row.push({
-                owner: {
-                    name: "",
-                    color: "",
-                    filter: ""
-                },
+                owner: null,
                 skin: 0
             });
             this.gameService.tiles.push(row);
         }
 
+        // Handle zooming
         document.querySelector("app-play")!.addEventListener('wheel', e =>
         {
             // Calculate zoom

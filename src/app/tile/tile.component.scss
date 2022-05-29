@@ -1,11 +1,14 @@
-div
+.border
 {
     width: 2rem;
     height: 2rem;
-}
 
-img
-{
-    width: 100%;
-    image-rendering: pixelated;
+    .player-marker
+    {
+        // The background is set in the HTML
+        height: 100%;
+        mask-image: url("/assets/player-marker.png"); // Ignore the warning, it works lol
+        mask-size: 100%;
+        image-rendering: pixelated;
+    }
 }
