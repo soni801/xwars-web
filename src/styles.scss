@@ -32,7 +32,7 @@ body
 // 3.1 Links
 a
 {
-    color: variables.$button;
+    color: variables.$button-foreground;
     transition: 200ms ease;
 
     &:hover { opacity: .6; }
@@ -52,11 +52,31 @@ button // UI buttons, e.g. end turn
     height: fit-content; // For correct scaling in flex (e.g. end turn button)
     padding: .5rem 1rem;
     color: variables.$foreground;
-    background: variables.$background;
-    border: none;
-    border-radius: 1rem;
+    background: variables.$button-background;
+    border: 4px solid variables.$button-foreground;
     font-family: "uni 05_53", sans-serif;
     font-size: 1.5rem;
+    cursor: pointer;
+    transition: .1s ease;
+
+    &:hover
+    {
+        background: variables.$background;
+        border-color: variables.$button-background;
+    }
+
+    &:active
+    {
+        color: variables.$button-foreground;
+    }
+
+    &:disabled
+    {
+        color: variables.$button-background;
+        background: variables.$background;
+        border-color: variables.$button-background;
+        cursor: not-allowed;
+    }
 }
 
 // 4 Utility classes
