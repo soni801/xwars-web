@@ -8,10 +8,28 @@ import {GameService} from "../game.service";
 })
 export class PlayComponent implements OnInit
 {
+    /**
+     * The zoom level of the playing board
+     *
+     * @private
+     */
     private zoom = 1;
+    /**
+     * Whether the user is currently moving (dragging) the board on screen
+     */
     dragging = false;
 
+    /**
+     * The minimum allowed zoom value
+     *
+     * @private
+     */
     private minZoom = .3;
+    /**
+     * The maximum allowed zoom value
+     *
+     * @private
+     */
     private maxZoom = 3;
 
     constructor(

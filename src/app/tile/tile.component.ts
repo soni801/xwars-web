@@ -8,6 +8,9 @@ import {Tile} from "../models/tile.models";
 })
 export class TileComponent implements OnInit
 {
+    /**
+     * The Tile object tied to this visual tile. This is where all the properties of this tile are stored
+     */
     @Input() tile!: Tile;
 
     constructor() { }
