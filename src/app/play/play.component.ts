@@ -46,7 +46,8 @@ export class PlayComponent implements OnInit
             const row: Tile[] = [];
             for (let j = 0; j < this.gameService.board.width; j++) row.push({
                 owner: null,
-                isFoundation: {
+                foundation: {
+                    owner: null,
                     top: false,
                     bottom: false,
                     left: false,

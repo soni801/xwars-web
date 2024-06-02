@@ -7,7 +7,8 @@ export interface Tile
      * tile if it does have an owner.
      */
     owner: Player | null,
-    isFoundation: {
+    foundation: {
+        owner: Player | null,
         top: boolean;
         bottom: boolean;
         left: boolean;

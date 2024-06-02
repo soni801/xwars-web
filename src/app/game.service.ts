@@ -48,70 +48,66 @@ export class GameService
             this.randomNumber(0, this.board.height - 1)
         ];
 
-        // Set owner of player 1 foundation
-        this.tiles[foundationPositions[0]][0].owner = this.players[0];
-        this.tiles[foundationPositions[0] + 1][0].owner = this.players[0];
-        this.tiles[foundationPositions[0]][1].owner = this.players[0];
-        this.tiles[foundationPositions[0] + 1][1].owner = this.players[0];
-
-        // Set isFoundation of player 1 foundation
-        this.tiles[foundationPositions[0]][0].isFoundation = {
+        // Set player 1 foundation
+        this.tiles[foundationPositions[0]][0].foundation = {
+            owner: this.players[0],
             top: true,
             bottom: false,
             left: true,
             right: false
         }
 
-        this.tiles[foundationPositions[0] + 1][0].isFoundation = {
+        this.tiles[foundationPositions[0] + 1][0].foundation = {
+            owner: this.players[0],
             top: false,
             bottom: true,
             left: true,
             right: false
         }
 
-        this.tiles[foundationPositions[0]][1].isFoundation = {
+        this.tiles[foundationPositions[0]][1].foundation = {
+            owner: this.players[0],
             top: true,
             bottom: false,
             left: false,
             right: true
         }
 
-        this.tiles[foundationPositions[0] + 1][1].isFoundation = {
+        this.tiles[foundationPositions[0] + 1][1].foundation = {
+            owner: this.players[0],
             top: false,
             bottom: true,
             left: false,
             right: true
         }
 
-        // Set owner of player 2 foundation
-        this.tiles[foundationPositions[1]][this.board.width - 2].owner = this.players[1];
-        this.tiles[foundationPositions[1] + 1][this.board.width - 2].owner = this.players[1];
-        this.tiles[foundationPositions[1]][this.board.width - 1].owner = this.players[1];
-        this.tiles[foundationPositions[1] + 1][this.board.width - 1].owner = this.players[1];
-
-        // Set isFoundation of player 2 foundation
-        this.tiles[foundationPositions[1]][this.board.width - 2].isFoundation = {
+        // Set player 2 foundation
+        this.tiles[foundationPositions[1]][this.board.width - 2].foundation = {
+            owner: this.players[1],
             top: true,
             bottom: false,
             left: true,
             right: false
         }
 
-        this.tiles[foundationPositions[1] + 1][this.board.width - 2].isFoundation = {
+        this.tiles[foundationPositions[1] + 1][this.board.width - 2].foundation = {
+            owner: this.players[1],
             top: false,
             bottom: true,
             left: true,
             right: false
         }
 
-        this.tiles[foundationPositions[1]][this.board.width - 1].isFoundation = {
+        this.tiles[foundationPositions[1]][this.board.width - 1].foundation = {
+            owner: this.players[1],
             top: true,
             bottom: false,
             left: false,
             right: true
         }
 
-        this.tiles[foundationPositions[1] + 1][this.board.width - 1].isFoundation = {
+        this.tiles[foundationPositions[1] + 1][this.board.width - 1].foundation = {
+            owner: this.players[1],
             top: false,
             bottom: true,
             left: false,

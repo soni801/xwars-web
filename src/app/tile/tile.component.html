@@ -1,15 +1,10 @@
 <div class="border" [ngClass]="[
-    this.tile.isFoundation.top ? 'color-top' : '',
-    this.tile.isFoundation.bottom ? 'color-bottom' : '',
-    this.tile.isFoundation.left ? 'color-left' : '',
-    this.tile.isFoundation.right ? 'color-right' : ''
-]" style="color: {{this.tile.owner?.color}}">
-    @if (this.tile.owner && this.tile.isFoundation == {
-        top: false,
-        bottom: false,
-        left: false,
-        right: false
-    }) {
-        <div class="player-marker"></div>
+    this.tile.foundation.top ? 'color-top' : '',
+    this.tile.foundation.bottom ? 'color-bottom' : '',
+    this.tile.foundation.left ? 'color-left' : '',
+    this.tile.foundation.right ? 'color-right' : ''
+]" style="color: {{this.tile.foundation.owner?.color}}">
+    @if (this.tile.owner) {
+        <div class="player-marker" style="color: {{this.tile.owner.color}}"></div>
     }
 </div>
