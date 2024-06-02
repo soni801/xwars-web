@@ -139,13 +139,11 @@ export class GameService
      */
     takeTile(tile: Tile): void
     {
-        // Make sure that the tile is not already taken or is the player's own foundation
-        if (!tile.owner && tile.foundation.owner !== this.players[this.currentPlayer])
-        {
+        // Only let the player claim the tile if it is able to be captured (highlighted)
+        if (tile.highlighted) {
             tile.owner = this.players[this.currentPlayer];
             this.nextPlayer();
         }
-        // TODO: Notify user if the tile is taken
     }
 
     /**
