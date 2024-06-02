@@ -52,7 +52,8 @@ export class PlayComponent implements OnInit
                     bottom: false,
                     left: false,
                     right: false
-                }
+                },
+                highlighted: null
             });
             this.gameService.tiles.push(row);
         }

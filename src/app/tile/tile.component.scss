@@ -1,5 +1,8 @@
 :host > div
 {
+    // This is needed to make the highlighted thingy work
+    position: relative;
+
     width: 2rem;
     height: 2rem;
 
@@ -13,9 +16,23 @@
         mask-size: 100%;
         image-rendering: pixelated;
     }
+
+    // "Highlight" that is enabled when the tile is able to be captured by a player
+    .highlighted
+    {
+        position: absolute;
+        inset: 0;
+        animation: highlight 2s alternate infinite;
+    }
 }
 
 .color-top { border-top: 4px solid currentColor; }
 .color-bottom { border-bottom: 4px solid currentColor; }
 .color-left { border-left: 4px solid currentColor; }
 .color-right { border-right: 4px solid currentColor; }
+
+@keyframes highlight
+{
+    from { outline: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+    to { outline: 1px solid color-mix(in srgb, currentColor 40%, transparent); }
+}

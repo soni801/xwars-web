@@ -6,5 +6,7 @@
 ]" style="color: {{this.tile.foundation.owner?.color}}">
     @if (this.tile.owner) {
         <div class="player-marker" style="color: {{this.tile.owner.color}}"></div>
+    } @else if (this.tile.highlighted) {
+        <div class="highlighted" style="color: {{this.tile.highlighted.color}}"></div>
     }
 </div>
