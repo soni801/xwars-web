@@ -17,10 +17,21 @@ export class GameService
      * The global register of tiles in the game
      */
     tiles!: Tile[][];
+
     /**
      * The players currently playing
      */
-    players!: Player[];
+    players: Player[] = [
+        {
+            name: "Player 1",
+            color: "#ee5555"
+        },
+        {
+            name: "Player 2",
+            color: "#5555ee"
+        }
+    ];
+
     /**
      * The size of the board in the game
      */
@@ -28,10 +39,12 @@ export class GameService
         width: 30,
         height: 15
     };
+
     /**
      * Which turn the game is in. This is incremented once after all players have done their move.
      */
     turn!: number;
+
     /**
      * The player that currently has its turn. This is equal to an index in the "players" variable.
      */
@@ -124,16 +137,6 @@ export class GameService
     reset(): void
     {
         this.tiles = [];
-        this.players = [
-            {
-                name: "Player 1",
-                color: "#ee5555"
-            },
-            {
-                name: "Player 2",
-                color: "#5555ee"
-            }
-        ];
         this.turn = 1;
         this.currentPlayer = 0;
     }
