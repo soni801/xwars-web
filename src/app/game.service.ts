@@ -160,6 +160,47 @@ export class GameService
             this.currentPlayer = 0;
             this.turn++;
         }
+
+        this.highlightCapturableTiles();
+    }
+
+    highlightCapturableTiles(): void {
+        // Clear highlight of all tiles
+        this.tiles.forEach(tileRow => {
+            tileRow.forEach(tile => {
+                tile.highlighted = null;
+            });
+        });
+
+        // Get all tiles that are owned by the current player (both normal tiles and foundations)
+        this.tiles.forEach(tileRow => {
+            tileRow.filter(tile => tile.owner === this.players[this.currentPlayer] || tile.foundation.owner === this.players[this.currentPlayer]).forEach(tile => {
+                // Check all surrounding tiles
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        // Get tile position relatively, based on captured tile
+                        const y = this.tiles.indexOf(tileRow) - 1 + i;
+                        const x = tileRow.indexOf(tile) - 1 + j;
+
+                        // Stop execution if the position is invalid
+                        if (y < 0 || y >= this.board.height) continue;
+                        if (x < 0 || x >= this.board.width) continue;
+
+                        // Get the tile object based on position
+                        const surroundingTile = this.tiles[y][x];
+
+                        // Stop execution if the tile is already owned
+                        if (surroundingTile.owner) continue;
+
+                        // Stop execution if the tile is the player's own foundation
+                        if (surroundingTile.foundation.owner === this.players[this.currentPlayer]) continue;
+
+                        // If all checks go well, highlight the tile
+                        surroundingTile.highlighted = this.players[this.currentPlayer];
+                    }
+                }
+            });
+        });
     }
 
     /**
