@@ -46,6 +46,8 @@ a
     font-size: 2rem;
     text-decoration: none;
     text-transform: uppercase;
+    user-select: none;
+    cursor: pointer;
 }
 
 button // UI buttons, e.g. end turn

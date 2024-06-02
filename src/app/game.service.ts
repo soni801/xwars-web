@@ -11,7 +11,7 @@ export class GameService
     /**
      * The state the game is currently in
      */
-    state: GameState = GameState.InGame;
+    state: GameState = GameState.PreGame;
 
     /**
      * The global register of tiles in the game

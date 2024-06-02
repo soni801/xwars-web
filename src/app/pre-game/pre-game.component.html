@@ -1,0 +1,11 @@
+<div class="full-size">
+    <div class="player-info">
+        <div class="player-avatar" style="color: {{gameService.players[0].color}}"></div>
+        <h2>{{ gameService.players[0].name }}</h2>
+    </div>
+    <a class="button" (click)="startGame()">Start</a>
+    <div class="player-info reverse">
+        <div class="player-avatar" style="color: {{gameService.players[1].color}}"></div>
+        <h2>{{ gameService.players[1].name }}</h2>
+    </div>
+</div>
