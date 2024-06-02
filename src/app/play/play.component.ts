@@ -56,6 +56,9 @@ export class PlayComponent implements OnInit
             this.gameService.tiles.push(row);
         }
 
+        // Initialise foundations
+        this.gameService.createFoundation();
+
         // Handle zooming
         document.querySelector("app-play")!.addEventListener('wheel', e =>
         {

@@ -35,6 +35,90 @@ export class GameService
         this.reset();
     }
 
+    /**
+     * Chooses foundation locations and sets the tile data appropriately
+     *
+     * @author Soni
+     */
+    createFoundation(): void {
+        // Chose foundation location
+        // This has to subtract one from the maximum height, because the foundation is 2 tiles tall
+        const foundationPositions: number[] = [
+            this.randomNumber(0, this.board.height - 1),
+            this.randomNumber(0, this.board.height - 1)
+        ];
+
+        // Set owner of player 1 foundation
+        this.tiles[foundationPositions[0]][0].owner = this.players[0];
+        this.tiles[foundationPositions[0] + 1][0].owner = this.players[0];
+        this.tiles[foundationPositions[0]][1].owner = this.players[0];
+        this.tiles[foundationPositions[0] + 1][1].owner = this.players[0];
+
+        // Set isFoundation of player 1 foundation
+        this.tiles[foundationPositions[0]][0].isFoundation = {
+            top: true,
+            bottom: false,
+            left: true,
+            right: false
+        }
+
+        this.tiles[foundationPositions[0] + 1][0].isFoundation = {
+            top: false,
+            bottom: true,
+            left: true,
+            right: false
+        }
+
+        this.tiles[foundationPositions[0]][1].isFoundation = {
+            top: true,
+            bottom: false,
+            left: false,
+            right: true
+        }
+
+        this.tiles[foundationPositions[0] + 1][1].isFoundation = {
+            top: false,
+            bottom: true,
+            left: false,
+            right: true
+        }
+
+        // Set owner of player 2 foundation
+        this.tiles[foundationPositions[1]][this.board.width - 2].owner = this.players[1];
+        this.tiles[foundationPositions[1] + 1][this.board.width - 2].owner = this.players[1];
+        this.tiles[foundationPositions[1]][this.board.width - 1].owner = this.players[1];
+        this.tiles[foundationPositions[1] + 1][this.board.width - 1].owner = this.players[1];
+
+        // Set isFoundation of player 2 foundation
+        this.tiles[foundationPositions[1]][this.board.width - 2].isFoundation = {
+            top: true,
+            bottom: false,
+            left: true,
+            right: false
+        }
+
+        this.tiles[foundationPositions[1] + 1][this.board.width - 2].isFoundation = {
+            top: false,
+            bottom: true,
+            left: true,
+            right: false
+        }
+
+        this.tiles[foundationPositions[1]][this.board.width - 1].isFoundation = {
+            top: true,
+            bottom: false,
+            left: false,
+            right: true
+        }
+
+        this.tiles[foundationPositions[1] + 1][this.board.width - 1].isFoundation = {
+            top: false,
+            bottom: true,
+            left: false,
+            right: true
+        }
+    }
+
     reset(): void
     {
         this.tiles = [];
@@ -80,5 +164,20 @@ export class GameService
             this.currentPlayer = 0;
             this.turn++;
         }
+    }
+
+    /**
+     * Get a random number in the provided range
+     *
+     * @param {number} min The minimum number (included)
+     * @param {number} max The maximum number (excluded)
+     * @returns {number} The randomly generated number
+     *
+     * @author Soni
+     * @see {@link Math.random}
+     */
+    private randomNumber(min: number, max: number): number
+    {
+        return Math.floor(Math.random() * (max - min) + min);
     }
 }

@@ -3,6 +3,8 @@
     width: 2rem;
     height: 2rem;
 
+    box-sizing: border-box;
+
     .player-marker
     {
         background: currentColor;
@@ -13,7 +15,7 @@
     }
 }
 
-.color-top { border-top-color: currentColor; }
-.color-bottom { border-bottom-color: currentColor; }
-.color-left { border-left-color: currentColor; }
-.color-right { border-right-color: currentColor; }
+.color-top { border-top: 4px solid currentColor; }
+.color-bottom { border-bottom: 4px solid currentColor; }
+.color-left { border-left: 4px solid currentColor; }
+.color-right { border-right: 4px solid currentColor; }
