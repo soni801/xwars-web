@@ -1,8 +1,11 @@
-:host > div
+:host
 {
+    padding: 5rem;
+
     display: flex;
-    justify-content: space-between;
-    align-items: end;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
 .player-info
@@ -13,8 +16,8 @@
 
     .player-avatar
     {
-        width: 2rem;
-        height: 2rem;
+        width: 3rem;
+        aspect-ratio: 1;
 
         background: currentColor;
     }
@@ -23,9 +26,4 @@
     {
         margin: 0;
     }
-}
-
-.reverse
-{
-    flex-direction: row-reverse;
 }

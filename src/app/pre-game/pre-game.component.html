@@ -1,13 +1,15 @@
-<div id="color-picker"></div>
+<div id="color-picker-1"></div>
 
-<div>
-    <div class="player-info">
-        <div class="player-avatar" style="color: {{gameService.players[0].color}}"></div>
-        <h2>{{ gameService.players[0].name }}</h2>
-    </div>
-    <a class="button" (click)="startGame()">Start</a>
-    <div class="player-info reverse">
-        <div class="player-avatar" style="color: {{gameService.players[1].color}}"></div>
-        <h2>{{ gameService.players[1].name }}</h2>
-    </div>
+<div class="player-info">
+    <div class="player-avatar" style="color: {{gameService.players[0].color}}"></div>
+    <h2>{{ gameService.players[0].name }}</h2>
 </div>
+
+<a class="button" (click)="startGame()">Start</a>
+
+<div class="player-info">
+    <div class="player-avatar" style="color: {{gameService.players[1].color}}"></div>
+    <h2>{{ gameService.players[1].name }}</h2>
+</div>
+
+<div id="color-picker-2"></div>

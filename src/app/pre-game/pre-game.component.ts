@@ -16,7 +16,7 @@ export class PreGameComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit(): void {
-        const colorPicker: IroColorPicker = ColorPicker('#color-picker', {
+        const colorPicker1: IroColorPicker = ColorPicker('#color-picker-1', {
             color: this.gameService.players[0].color,
             borderWidth: 2,
             layout: [
@@ -32,8 +32,28 @@ export class PreGameComponent implements AfterViewInit {
             ]
         });
 
-        colorPicker.on('color:change', (color: any) => {
+        const colorPicker2: IroColorPicker = ColorPicker('#color-picker-2', {
+            color: this.gameService.players[1].color,
+            borderWidth: 2,
+            layout: [
+                {
+                    component: iro.ui.Box
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'hue'
+                    }
+                }
+            ]
+        });
+
+        colorPicker1.on('color:change', (color: any) => {
             this.gameService.players[0].color = color.hexString;
+        });
+
+        colorPicker2.on('color:change', (color: any) => {
+            this.gameService.players[1].color = color.hexString;
         });
     }
 
