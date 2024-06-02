@@ -7,5 +7,10 @@ export interface Tile
      * tile if it does have an owner.
      */
     owner: Player | null,
-    skin: number
+    isFoundation: {
+        top: boolean;
+        bottom: boolean;
+        left: boolean;
+        right: boolean;
+    }
 }

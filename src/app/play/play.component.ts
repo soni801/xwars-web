@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from "../game.service";
+import {Tile} from "../models/tile.models";
 
 @Component({
     selector: 'app-play',
@@ -42,10 +43,15 @@ export class PlayComponent implements OnInit
         this.gameService.reset();
         for (let i = 0; i < this.gameService.board.height; i++)
         {
-            const row = [];
+            const row: Tile[] = [];
             for (let j = 0; j < this.gameService.board.width; j++) row.push({
                 owner: null,
-                skin: 0
+                isFoundation: {
+                    top: false,
+                    bottom: false,
+                    left: false,
+                    right: false
+                }
             });
             this.gameService.tiles.push(row);
         }

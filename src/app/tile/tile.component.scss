@@ -1,14 +1,19 @@
-.border
+:host > div
 {
     width: 2rem;
     height: 2rem;
 
     .player-marker
     {
-        // The background is set in the HTML
+        background: currentColor;
         height: 100%;
-        mask-image: url("/assets/player-marker.png"); // Ignore the warning, it works lol
+        mask-image: url("/assets/player-marker.png");
         mask-size: 100%;
         image-rendering: pixelated;
     }
 }
+
+.color-top { border-top-color: currentColor; }
+.color-bottom { border-bottom-color: currentColor; }
+.color-left { border-left-color: currentColor; }
+.color-right { border-right-color: currentColor; }

@@ -1,3 +1,8 @@
-<div class="border">
-    <div class="player-marker" *ngIf="this.tile.owner" style="background: {{this.tile.owner.color}}"></div>
+<div class="border" [ngClass]="[
+    this.tile.isFoundation.top ? 'color-top' : '',
+    this.tile.isFoundation.bottom ? 'color-bottom' : '',
+    this.tile.isFoundation.left ? 'color-left' : '',
+    this.tile.isFoundation.right ? 'color-right' : ''
+]" style="color: {{this.tile.owner?.color}}">
+    <div class="player-marker" *ngIf="this.tile.owner" style=""></div>
 </div>
