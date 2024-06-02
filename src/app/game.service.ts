@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Player} from "./models/player.models";
 import {Tile} from "./models/tile.models";
-import {Router} from "@angular/router";
 import {GameState} from "./types/game-state";
 
 @Injectable({
@@ -38,9 +37,7 @@ export class GameService
      */
     currentPlayer!: number;
 
-    constructor(
-        private _router: Router
-    ) {
+    constructor() {
         this.reset();
     }
 
@@ -170,8 +167,8 @@ export class GameService
         }
 
         // Check if the game is over
-        const winningPlayer = this.hasWon();
-        if (winningPlayer) this._router.navigate(['']).then(() => console.log(`Player ${winningPlayer.name} won the game!`));
+        const winningPlayer = this.winner();
+        if (winningPlayer) this.state = GameState.PostGame;
 
         // Highlight capturable tiles for next turn
         this.highlightCapturableTiles();
@@ -225,9 +222,8 @@ export class GameService
      * @returns {Player | null} The Player that won the game, or null if neither player has won the game yet
      *
      * @author Soni
-     * @private
      */
-    private hasWon(): Player | null {
+    winner(): Player | null {
         let capturedFoundations: number[] = [0, 0];
 
         this.tiles.forEach(tileRow => {

@@ -6,6 +6,7 @@
     3 Elements
         3.1 Links
         3.2 Buttons
+        3.3 Headings
     4 Utility classes
  */
 
@@ -77,6 +78,12 @@ button // UI buttons, e.g. end turn
         border-color: variables.$button-background;
         cursor: not-allowed;
     }
+}
+
+// 3.3 Headings
+h1
+{
+    font-size: 4rem;
 }
 
 // 4 Utility classes

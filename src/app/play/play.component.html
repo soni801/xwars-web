@@ -2,4 +2,7 @@
     @case (GameState.InGame) {
         <app-game></app-game>
     }
+    @case (GameState.PostGame) {
+        <app-post-game [winner]="gameService.winner()"></app-post-game>
+    }
 }

@@ -10,6 +10,7 @@ import { TileComponent } from './tile/tile.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { AboutComponent } from './about/about.component';
 import {GameComponent} from "./game/game.component";
+import {PostGameComponent} from "./post-game/post-game.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {GameComponent} from "./game/game.component";
     PlayComponent,
     TileComponent,
     AboutComponent,
-    GameComponent
+    GameComponent,
+    PostGameComponent
   ],
   imports: [
     BrowserModule,
