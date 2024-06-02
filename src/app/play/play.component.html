@@ -1,1 +1,5 @@
-<app-game></app-game>
+@switch (gameService.state) {
+    @case (GameState.InGame) {
+        <app-game></app-game>
+    }
+}

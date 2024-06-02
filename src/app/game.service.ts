@@ -2,12 +2,18 @@ import { Injectable } from '@angular/core';
 import {Player} from "./models/player.models";
 import {Tile} from "./models/tile.models";
 import {Router} from "@angular/router";
+import {GameState} from "./types/game-state";
 
 @Injectable({
     providedIn: 'root'
 })
 export class GameService
 {
+    /**
+     * The state the game is currently in
+     */
+    state: GameState = GameState.InGame;
+
     /**
      * The global register of tiles in the game
      */
