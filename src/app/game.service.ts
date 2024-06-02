@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Player} from "./models/player.models";
 import {Tile} from "./models/tile.models";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +32,9 @@ export class GameService
      */
     currentPlayer!: number;
 
-    constructor() {
+    constructor(
+        private _router: Router
+    ) {
         this.reset();
     }
 
@@ -152,6 +155,7 @@ export class GameService
      */
     nextPlayer(): void
     {
+        // Increment current player
         if (this.currentPlayer == 0) this.currentPlayer++;
         else
         {
@@ -159,9 +163,17 @@ export class GameService
             this.turn++;
         }
 
+        // Check if the game is over
+        const winningPlayer = this.hasWon();
+        if (winningPlayer) this._router.navigate(['']).then(() => console.log(`Player ${winningPlayer.name} won the game!`));
+
+        // Highlight capturable tiles for next turn
         this.highlightCapturableTiles();
     }
 
+    /**
+     * Highlights all the tiles that are capturable by the current player
+     */
     highlightCapturableTiles(): void {
         // Clear highlight of all tiles
         this.tiles.forEach(tileRow => {
@@ -199,6 +211,29 @@ export class GameService
                 }
             });
         });
+    }
+
+    /**
+     * Checks if a player has won the game
+     *
+     * @returns {Player | null} The Player that won the game, or null if neither player has won the game yet
+     *
+     * @author Soni
+     * @private
+     */
+    private hasWon(): Player | null {
+        let capturedFoundations: number[] = [0, 0];
+
+        this.tiles.forEach(tileRow => {
+            tileRow.filter(tile => tile.foundation.owner).forEach(tile => {
+                if (tile.owner === this.players[0]) capturedFoundations[0]++;
+                else if (tile.owner === this.players[1]) capturedFoundations[1]++;
+            });
+        });
+
+        if (capturedFoundations[0] > 3) return this.players[0];
+        else if (capturedFoundations[1] > 3) return this.players[1];
+        return null;
     }
 
     /**
