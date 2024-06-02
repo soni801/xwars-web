@@ -139,8 +139,8 @@ export class GameService
      */
     takeTile(tile: Tile): void
     {
-        // Make sure that the tile is not already taken
-        if (!tile.owner)
+        // Make sure that the tile is not already taken or is the player's own foundation
+        if (!tile.owner && tile.foundation.owner !== this.players[this.currentPlayer])
         {
             tile.owner = this.players[this.currentPlayer];
             this.nextPlayer();
