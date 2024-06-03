@@ -39,7 +39,6 @@ export class GameComponent implements OnInit {
     ngOnInit(): void
     {
         // Initialise tiles
-        this.gameService.reset();
         for (let i = 0; i < this.gameService.board.height; i++)
         {
             const row: Tile[] = [];

@@ -11,7 +11,7 @@ export class GameService
     /**
      * The state the game is currently in
      */
-    state: GameState = GameState.PreGame;
+    state!: GameState;
 
     /**
      * The global register of tiles in the game
@@ -21,16 +21,7 @@ export class GameService
     /**
      * The players currently playing
      */
-    players: Player[] = [
-        {
-            name: "Player 1",
-            color: "#ee5555"
-        },
-        {
-            name: "Player 2",
-            color: "#5555ee"
-        }
-    ];
+    players!: Player[];
 
     /**
      * The size of the board in the game
@@ -136,7 +127,18 @@ export class GameService
 
     reset(): void
     {
+        this.state = GameState.PreGame;
         this.tiles = [];
+        this.players = [
+            {
+                name: "Player 1",
+                color: "#ee5555"
+            },
+            {
+                name: "Player 2",
+                color: "#5555ee"
+            }
+        ];
         this.turn = 1;
         this.currentPlayer = 0;
     }
