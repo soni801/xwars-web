@@ -12,6 +12,7 @@ import {AboutComponent} from './about/about.component';
 import {GameComponent} from "./game/game.component";
 import {PostGameComponent} from "./post-game/post-game.component";
 import {PreGameComponent} from "./pre-game/pre-game.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,11 +26,12 @@ import {PreGameComponent} from "./pre-game/pre-game.component";
     PostGameComponent,
     PreGameComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DragDropModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        DragDropModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

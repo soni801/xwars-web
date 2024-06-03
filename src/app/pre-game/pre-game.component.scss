@@ -1,3 +1,5 @@
+@use "../../variables";
+
 :host
 {
     padding: 5rem;
@@ -22,8 +24,18 @@
         background: currentColor;
     }
 
-    h2
+    input
     {
-        margin: 0;
+        width: 10rem;
+        padding: .5rem 1rem;
+
+        background: none;
+        color: variables.$foreground;
+
+        font-family: "uni 05_53", sans-serif;
+        font-size: 1.5rem;
+
+        border: 2px solid variables.$button-foreground;
+        outline: none;
     }
 }
