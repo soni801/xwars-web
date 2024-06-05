@@ -60,4 +60,8 @@ export class PreGameComponent implements AfterViewInit {
     protected startGame(): void {
         this.gameService.state = GameState.InGame;
     }
+
+    protected blockNonNumericValues(event: Event): void {
+        if (event instanceof KeyboardEvent && event.key.length === 1 && /\D/.test(event.key)) event.preventDefault();
+    }
 }
