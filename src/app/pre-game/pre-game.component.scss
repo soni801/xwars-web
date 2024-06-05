@@ -10,6 +10,21 @@
     gap: 2rem;
 }
 
+input
+{
+    width: 10rem;
+    padding: .5rem 1rem;
+
+    background: none;
+    color: variables.$foreground;
+
+    font-family: "uni 05_53", sans-serif;
+    font-size: 1.5rem;
+
+    border: 2px solid variables.$button-foreground;
+    outline: none;
+}
+
 .player-info
 {
     display: flex;
@@ -23,19 +38,21 @@
 
         background: currentColor;
     }
+}
+
+#board-settings
+{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    h2
+    {
+        margin: 0;
+    }
 
     input
     {
-        width: 10rem;
-        padding: .5rem 1rem;
-
-        background: none;
-        color: variables.$foreground;
-
-        font-family: "uni 05_53", sans-serif;
-        font-size: 1.5rem;
-
-        border: 2px solid variables.$button-foreground;
-        outline: none;
+        width: 4ch;
     }
 }
