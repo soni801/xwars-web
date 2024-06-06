@@ -16,7 +16,7 @@
 
 <h2>Board size</h2>
 <div id="board-settings">
-    <input type="number" min="5" max="100" [(ngModel)]="gameService.board.width" (keydown)="blockNonNumericValues($event)">
+    <input type="number" min="5" max="100" [(ngModel)]="gameService.board.width" (keydown)="blockNonNumericValues($event)" (keyup)="gameService.board.width = clamp(gameService.board.width, 5, 100)">
     <p>x</p>
-    <input type="number" min="5" max="100" [(ngModel)]="gameService.board.height" (keydown)="blockNonNumericValues($event)">
+    <input type="number" min="5" max="100" [(ngModel)]="gameService.board.height" (keydown)="blockNonNumericValues($event)" (keyup)="gameService.board.height = clamp(gameService.board.height, 5, 100)">
 </div>

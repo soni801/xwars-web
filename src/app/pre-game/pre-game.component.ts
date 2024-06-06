@@ -64,4 +64,11 @@ export class PreGameComponent implements AfterViewInit {
     protected blockNonNumericValues(event: Event): void {
         if (event instanceof KeyboardEvent && event.key.length === 1 && /\D/.test(event.key)) event.preventDefault();
     }
+
+    protected clamp(value: number, min: number, max: number): number {
+        console.log(value, value < min, value > max);
+        if (value < min) return min;
+        if (value > max) return max;
+        return value;
+    }
 }
