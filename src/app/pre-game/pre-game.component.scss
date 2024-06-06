@@ -40,16 +40,16 @@ input
     }
 }
 
+h2
+{
+    margin: 0;
+}
+
 #board-settings
 {
     display: flex;
     align-items: center;
     gap: 1rem;
-
-    h2
-    {
-        margin: 0;
-    }
 
     input
     {
