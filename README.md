@@ -1,6 +1,6 @@
 # XwarsWeb
 
-A web client for the game xwars. This is not in a working state, and I cannot guarantee its completion.
+A web client for the game xwars, built with Angular. This client has almost full feature parity with the original Java client (soni801/xwars-java).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.12.
 
