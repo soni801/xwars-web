@@ -44,7 +44,7 @@ export class GameService
     /**
      * Whether the game is currently paused
      */
-    paused: boolean = false;
+    paused!: boolean;
 
     constructor() {
         this.reset();
@@ -146,6 +146,7 @@ export class GameService
         ];
         this.turn = 1;
         this.currentPlayer = 0;
+        this.paused = false;
     }
 
     /**

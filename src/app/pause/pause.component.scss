@@ -1,0 +1,12 @@
+@use '../../variables';
+
+:host
+{
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+    inset: 0;
+
+    background: variables.$background-translucent;
+}

@@ -1,1 +1,7 @@
-<p>pause works!</p>
+<div>
+    <h1>Paused</h1>
+    <div id="navigation" class="flex column center">
+        <a class="button" (click)="gameService.paused = false">Resume</a>
+        <a class="button" routerLink="/home" (click)="resetGame()">Quit</a>
+    </div>
+</div>
