@@ -41,6 +41,11 @@ export class GameService
      */
     currentPlayer!: number;
 
+    /**
+     * Whether the game is currently paused
+     */
+    paused: boolean = false;
+
     constructor() {
         this.reset();
     }

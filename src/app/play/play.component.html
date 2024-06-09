@@ -4,6 +4,9 @@
     }
     @case (GameState.InGame) {
         <app-game></app-game>
+        @if (gameService.paused) {
+            <app-pause></app-pause>
+        }
     }
     @case (GameState.PostGame) {
         <app-post-game [winner]="gameService.winner()"></app-post-game>

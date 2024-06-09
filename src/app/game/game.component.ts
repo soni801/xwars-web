@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {GameService} from "../game.service";
 import {Tile} from "../models/tile.models";
 
@@ -74,5 +74,10 @@ export class GameComponent implements OnInit {
             // Apply zoom
             (<HTMLAreaElement>document.querySelector("#zoom")).style.transform = `scale(${this.zoom})`;
         });
+    }
+
+    @HostListener('document:keydown', ['$event'])
+    handleKeyDown(event: KeyboardEvent) {
+        if (event.key === 'Escape') this.gameService.paused = !this.gameService.paused;
     }
 }

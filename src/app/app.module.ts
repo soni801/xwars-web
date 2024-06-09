@@ -13,22 +13,24 @@ import {GameComponent} from "./game/game.component";
 import {PostGameComponent} from "./post-game/post-game.component";
 import {PreGameComponent} from "./pre-game/pre-game.component";
 import {FormsModule} from "@angular/forms";
+import {PauseComponent} from "./pause/pause.component";
 
 @NgModule({
   declarations: [
+    AboutComponent,
     AppComponent,
+    GameComponent,
     HomeComponent,
     NotFoundComponent,
+    PauseComponent,
     PlayComponent,
-    TileComponent,
-    AboutComponent,
-    GameComponent,
     PostGameComponent,
-    PreGameComponent
+    PreGameComponent,
+    TileComponent
   ],
     imports: [
-        BrowserModule,
         AppRoutingModule,
+        BrowserModule,
         DragDropModule,
         FormsModule
     ],
