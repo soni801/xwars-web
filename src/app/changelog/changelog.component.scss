@@ -1,0 +1,53 @@
+@use "/src/variables";
+
+h1
+{
+    margin: 0;
+}
+
+h2
+{
+    margin: 0;
+    font-size: 2rem;
+}
+
+ul
+{
+    opacity: .7;
+    line-height: 1.5;
+}
+
+#content
+{
+    height: 50vh;
+    padding: 2rem;
+    overflow-y: scroll;
+    scrollbar-color: variables.$border-color transparent; // Firefox scrollbar
+}
+
+
+li
+{
+    $marker-offset: 5px;
+    padding-left: $marker-offset;
+    transform: translateX(-$marker-offset);
+
+    &.added::marker
+    {
+        content: '+';
+        color: variables.$color-add;
+    }
+
+    &.removed::marker
+    {
+        content: '-';
+        color: variables.$color-remove;
+        font-size: 1.2em; // For some reason the '-' symbol is thinner than other symbols, so this is needed
+    }
+
+    &.changed::marker
+    {
+        content: '*';
+        color: variables.$color-change;
+    }
+}

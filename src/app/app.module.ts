@@ -14,11 +14,13 @@ import {PostGameComponent} from "./post-game/post-game.component";
 import {PreGameComponent} from "./pre-game/pre-game.component";
 import {FormsModule} from "@angular/forms";
 import {PauseComponent} from "./pause/pause.component";
+import {ChangelogComponent} from "./changelog/changelog.component";
 
 @NgModule({
   declarations: [
     AboutComponent,
     AppComponent,
+    ChangelogComponent,
     GameComponent,
     HomeComponent,
     NotFoundComponent,

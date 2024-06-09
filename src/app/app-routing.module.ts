@@ -4,12 +4,14 @@ import {HomeComponent} from "./home/home.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {PlayComponent} from "./play/play.component";
 import {AboutComponent} from "./about/about.component";
+import {ChangelogComponent} from "./changelog/changelog.component";
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'play', component: PlayComponent },
     { path: 'about', component: AboutComponent },
+    { path: 'changelog', component: ChangelogComponent },
     { path: '**', component: NotFoundComponent }
 ];
 
