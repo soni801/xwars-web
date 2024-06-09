@@ -72,14 +72,6 @@ button // UI buttons, e.g. end turn
     {
         color: variables.$button-foreground;
     }
-
-    &:disabled
-    {
-        color: variables.$button-background;
-        background: variables.$background;
-        border-color: variables.$button-background;
-        cursor: not-allowed;
-    }
 }
 
 // 3.3 Headings
