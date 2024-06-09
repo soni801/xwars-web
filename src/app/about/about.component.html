@@ -4,7 +4,7 @@
     <div id="content" class="float center readable-length">
         <h3>Overview</h3>
         <p>
-            'The Great X Wars' is a slow-paced strategy game created by Soni and Magnus. The game plays out as crosses
+            'The Great X Wars' is a slow-paced strategy game created by Samuel and Magnus. The game plays out as crosses
             being placed on a grid, and the objective of the game is to fully invade the opponent's foundation before
             they invade yours.
         </p>
@@ -17,35 +17,34 @@
             play. We really enjoyed it, but wanted to expand on the concept.
         </p>
         <p>
-            Originally, Magnus came with the idea to do the same, but recurse one more time. We tried, but it
-            became very confusing. We then tried to make the game work using an entire page of the math book, you know,
-            those with grids. When doing this, we naturally had to change the rules to fit this larger board. We very
-            quickly decided to make the objective to reach the other side, and continued to implement new mechanics over
-            time. We played this game for 3 years, always revising and changing the rules slightly to make the
-            experience more fun. We dubbed it 'The Great X Wars'. Why? Don't ask me, it was Magnus' idea.
+            Originally, Magnus came with the idea to do the same, but recurse one more time. We tried, but it became
+            very confusing. We then tried to make the game work using an entire page of a math book, you know, those
+            with grids. When doing this, we naturally had to change the rules to fit this larger board. We very quickly
+            decided to make the objective to reach the other side and continued to implement new mechanics over time. We
+            played this game for 3 years, always revising and changing the rules slightly to make the experience more
+            fun. We dubbed it 'The Great X Wars'. Why? Don't ask me, it was Magnus' idea.
         </p>
         <p>
-            After 3 years of high school we chose different paths for the future, but remained close friends.
-            Because we no longer met that often, Magnus came up with the idea for me to digitalise the game - he knew I
-            had already been programming for several years. I accepted the challenge, and started immediately. The
-            original code was horrible, and I very quickly stopped development on the project.
+            After 3 years of high school, we chose different paths for the future, but remained close friends. Because
+            we no longer met that often, Magnus came up with the idea for me to digitalise the game - he knew I had
+            already been programming for several years. I accepted the challenge and started immediately. The original
+            code was horrible, and I very quickly stopped development on the project.
         </p>
         <p>
-            Several long pauses and many complete rewrites later, we're here. At a web-based client for the
-            game. As for why I chose web? I originally tried making different types of native clients, but I saw that
-            the industry as a whole was moving a lot towards web. In addition to this, a web based platform will always
-            create better device support, e.g. mobile. So here it is, our 'classic' board game, but as a web
-            application.
+            Several long pauses and many complete rewrites later, we're here. At a web-based client for the game. As for
+            why I chose web – I originally tried making different types of native clients, but I saw that the industry
+            was moving a lot towards web. In addition to this, a web-based platform will always mean better device
+            support, e.g. mobile. So here it is, our 'classic' board game, but as a web application.
         </p>
         <h3>Rules</h3>
         <div>
             <h4>Objective</h4>
-            <p>Destroy the enemy's foundation by invading it with your own tiles.</p>
+            <p>Destroy the enemy's foundation by fully invading it with your own tiles.</p>
 
             <h4>Before the first round</h4>
             <p>
-                Each player has to choose a location for their foundation before the game starts. Your foundation must
-                be touching your side of the board.
+                Each player must choose a location for their foundation before the game starts. Your foundation must be
+                touching your side of the board.
             </p>
 
             <h4>When it's your turn</h4>
@@ -58,13 +57,30 @@
                             You can only place a tile touching one of your own tiles. If you have no tiles, the tile
                             must be touching your foundation unit.
                         </li>
+                        <li>
+                            If you get three normal tiles in a line (either straight or diagonal), you must choose one
+                            of the following to place immediately:
+                            <ul>
+                                <li>
+                                    A large tile. This tile has a size of 2x2 normal tiles and must touch one of your
+                                    tiles or your foundation.
+                                </li>
+                                <li>
+                                    2 walls. A wall can be placed in any empty position on the game board and is
+                                    indestructible by either player. It also blocks diagonal traversal between the walls.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            A tile may only be used this way once in each direction.
+                        </li>
                     </ul>
                 </li>
                 <li>
                     Destroy an enemy tile
                     <ul>
-                        <li>To destroy a single enemy tile you need to place two of your tiles on the enemy tile.</li>
-                        <li>This has to be done over two turns, however these turns do not need to be back-to-back.</li>
+                        <li>To destroy a single enemy tile, you need to place two of your tiles on the enemy tile.</li>
+                        <li>This must be done over two turns; however, these turns do not need to be back-to-back.</li>
                         <li>The enemy can never regain a destroyed tile.</li>
                     </ul>
                 </li>
@@ -79,16 +95,6 @@
                         <li>You may use one single large tile to win in one turn.</li>
                     </ul>
                 </li>
-            </ul>
-
-            <h4>Large tiles</h4>
-            <ul class="left">
-                <li>
-                    When you get three normal tiles in a line (either straight or diagonal), you get a large tile. A
-                    large tile's size is 2x2 tiles and must be placed immediately.
-                </li>
-                <li>A tile may only be used once in each direction to make a large tile.</li>
-                <li>It is not possible to create large tiles using large tiles.</li>
             </ul>
 
             <h4>Misc.</h4>
