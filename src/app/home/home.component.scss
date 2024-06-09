@@ -1,3 +1,11 @@
+@use '../../variables';
+
+#version-data
+{
+    color: variables.$button-foreground;
+    transform: translateY(-3rem);
+}
+
 #navigation
 {
     gap: 1.5rem;
