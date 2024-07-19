@@ -61,21 +61,20 @@ export class GameComponent implements OnInit {
         // Finalize board initialisation
         this.gameService.createFoundation();
         this.gameService.highlightCapturableTiles();
+    }
 
-        // Handle zooming
-        document.querySelector("app-play")!.addEventListener('wheel', e =>
-        {
-            // Calculate zoom
-            const delta = (<WheelEvent>e).deltaY;
-            this.zoom -= delta * .005;
+    @HostListener('wheel', ['$event'])
+    handleWheel(event: WheelEvent) {
+        // Calculate zoom
+        const delta = event.deltaY;
+        this.zoom -= delta * .005;
 
-            // Clamp zoom
-            if (this.zoom < this.minZoom) this.zoom = this.minZoom;
-            if (this.zoom > this.maxZoom) this.zoom = this.maxZoom;
+        // Clamp zoom
+        if (this.zoom < this.minZoom) this.zoom = this.minZoom;
+        if (this.zoom > this.maxZoom) this.zoom = this.maxZoom;
 
-            // Apply zoom
-            (<HTMLAreaElement>document.querySelector("#zoom")).style.transform = `scale(${this.zoom})`;
-        });
+        // Apply zoom
+        (<HTMLAreaElement>document.querySelector("#zoom")).style.transform = `scale(${this.zoom})`;
     }
 
     @HostListener('document:keydown', ['$event'])
