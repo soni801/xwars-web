@@ -15,6 +15,49 @@
         mask-image: url("/assets/player-marker.png");
         mask-size: 100%;
         image-rendering: pixelated;
+
+        // '2px' is just copied from styles.scss (the ".border" selector). This is a horrible way to do this.
+        $border-offset: 2px;
+
+        &.TopLeft
+        {
+            padding-bottom: $border-offset;
+            margin-right: -$border-offset;
+
+            mask-size: 200%;
+            mask-position: top left;
+
+        }
+
+        &.TopRight
+        {
+            padding-bottom: $border-offset;
+            margin-left: -$border-offset;
+
+            mask-size: 200%;
+            mask-position: top right;
+        }
+
+        &.BottomLeft
+        {
+            padding-bottom: $border-offset;
+            margin-top: -$border-offset;
+            margin-right: -$border-offset;
+
+            mask-size: 200%;
+            mask-position: bottom left;
+        }
+
+        &.BottomRight
+        {
+            padding-bottom: $border-offset;
+            margin-top: -$border-offset;
+            margin-left: -$border-offset;
+
+            mask-size: 200%;
+            mask-position: bottom right;
+        }
+
     }
 
     // "Highlight" that is enabled when the tile is able to be captured by a player

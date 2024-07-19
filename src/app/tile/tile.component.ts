@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Tile} from "../models/tile.models";
+import {LargeTilePart} from "../types/large-tile-part";
 
 @Component({
     selector: 'app-tile',
@@ -16,4 +17,6 @@ export class TileComponent implements OnInit
     constructor() { }
 
     ngOnInit(): void { }
+
+    protected readonly LargeTilePart = LargeTilePart;
 }

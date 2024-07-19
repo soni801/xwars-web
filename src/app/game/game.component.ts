@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {GameService} from "../game.service";
 import {Tile} from "../models/tile.models";
+import {LargeTilePart} from "../types/large-tile-part";
 
 @Component({
   selector: 'app-game',
@@ -44,6 +45,7 @@ export class GameComponent implements OnInit {
             const row: Tile[] = [];
             for (let j = 0; j < this.gameService.board.width; j++) row.push({
                 owner: null,
+                highlighted: null,
                 foundation: {
                     owner: null,
                     top: false,
@@ -51,7 +53,7 @@ export class GameComponent implements OnInit {
                     left: false,
                     right: false
                 },
-                highlighted: null
+                largeTilePart: LargeTilePart.NoLargeTile
             });
             this.gameService.tiles.push(row);
         }
