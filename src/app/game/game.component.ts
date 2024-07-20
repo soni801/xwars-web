@@ -44,6 +44,10 @@ export class GameComponent implements OnInit {
         {
             const row: Tile[] = [];
             for (let j = 0; j < this.gameService.board.width; j++) row.push({
+                position: {
+                    x: j,
+                    y: i
+                },
                 owner: null,
                 highlighted: null,
                 foundation: {

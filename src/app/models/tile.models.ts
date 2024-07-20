@@ -4,6 +4,14 @@ import {LargeTilePart} from "../types/large-tile-part";
 export interface Tile
 {
     /**
+     * The X and Y position of the tile on the board.
+     */
+    position: {
+        x: number;
+        y: number;
+    };
+
+    /**
      * The owner of the tile. This is set to null if the tile has no owner, or a reference to the Player that owns the
      * tile if it does have an owner.
      */
