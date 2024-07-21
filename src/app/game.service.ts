@@ -156,9 +156,15 @@ export class GameService
      */
     takeTile(tile: Tile): void
     {
-        // Only let the player claim the tile if it is able to be captured (highlighted)
+        // Only let the player claim the tile if it is able to be captured (highlighted) TODO: Inverse this condition check
         if (tile.highlighted) {
+            // Set the ownership of the tile
             tile.owner = this.players[this.currentPlayer];
+
+            // Calculate placement advantages
+            console.log(`Placement issued ${this.placementAdvantages(tile)} advantages`);
+
+            // Start next turn
             this.nextPlayer();
         }
     }
@@ -183,6 +189,66 @@ export class GameService
 
         // Highlight capturable tiles for next turn
         this.highlightCapturableTiles();
+    }
+
+    /**
+     * Whether the placement of the given tile issues the player an advantage (player can choose from getting a large X
+     * or a mine).
+     *
+     * @param tile The tile to check
+     *
+     * @returns {number} The amount of advantages the player gains from the tile placement
+     */
+    placementAdvantages(tile: Tile): number {
+        let advantages = 0;
+        let adjacentTilesDirection = {
+            vertical: 0,
+            horizontal: 0,
+            diagonalTopLeft: 0,
+            diagonalTopRight: 0
+        };
+
+        // Iterate over adjacent tiles
+        for (let x = -1; x < 2; x++) {
+            for (let y = -1; y < 2; y++) {
+                // Don't test tile if the position is invalid
+                if (tile.position.x + x < 0 || tile.position.x + x >= this.board.width) continue;
+                if (tile.position.y + y < 0 || tile.position.y + y >= this.board.height) continue;
+
+                // Don't test the same tile that's provided as a function parameter
+                if (x === 0 && y === 0) continue;
+
+                // Store a reference to the adjacent tile to test
+                const adjacentTile = this.tiles[tile.position.y + y][tile.position.x + x];
+
+                // Check if the tile is owned by the current player
+                if (adjacentTile.owner === this.players[this.currentPlayer]) {
+                    // Check if the next tile on the same axis is also owned by the current player
+                    if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].owner === this.players[this.currentPlayer]) {
+                        // TODO: Implement checks for which tiles are allowed to use for advantages
+                        advantages++;
+                    } else {
+                        // The adjacent tile does not have another tile next to it in the same direction, but may still
+                        // be relevant to check later if there is a tile opposite to it
+                        // TODO: There must be a cleaner way of implementing this (for example trying to get a number based on x and y? binary encoding?)
+                        if (x === 0) adjacentTilesDirection.vertical++;
+                        else if (y === 0) adjacentTilesDirection.horizontal++;
+                        else if ((x === -1 && y === -1) || (x === 1 && y === 1)) adjacentTilesDirection.diagonalTopLeft++;
+                        else adjacentTilesDirection.diagonalTopRight++;
+                    }
+                }
+            }
+        }
+
+        // Check whether additional advantages should be issues based on cental tile placement (adjacent tiles in both
+        // directions on same axis where neither have another tile next to them on the same axis
+        // TODO: This can also be improved if/when changing the way adjacent tiles are stored
+        if (adjacentTilesDirection.vertical > 1) advantages++;
+        if (adjacentTilesDirection.horizontal > 1) advantages++;
+        if (adjacentTilesDirection.diagonalTopLeft > 1) advantages++;
+        if (adjacentTilesDirection.diagonalTopRight > 1) advantages++;
+
+        return advantages;
     }
 
     /**
