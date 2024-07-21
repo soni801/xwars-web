@@ -156,17 +156,17 @@ export class GameService
      */
     takeTile(tile: Tile): void
     {
-        // Only let the player claim the tile if it is able to be captured (highlighted) TODO: Inverse this condition check
-        if (tile.highlighted) {
-            // Set the ownership of the tile
-            tile.owner = this.players[this.currentPlayer];
+        // Don't let the player claim the tile if it's not highlighted
+        if (!tile.highlighted) return;
 
-            // Calculate placement advantages
-            console.log(`Placement issued ${this.placementAdvantages(tile)} advantages`);
+        // Set the ownership of the tile
+        tile.owner = this.players[this.currentPlayer];
 
-            // Start next turn
-            this.nextPlayer();
-        }
+        // Calculate placement advantages
+        console.log(`Placement issued ${this.placementAdvantages(tile)} advantages`);
+
+        // Start next turn
+        this.nextPlayer();
     }
 
     /**
