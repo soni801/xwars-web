@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Player} from "./models/player.models";
 import {Tile} from "./models/tile.models";
 import {GameState} from "./types/game-state";
+import {PlacementMode} from "./types/placement-mode";
 
 @Injectable({
     providedIn: 'root'
@@ -45,6 +46,11 @@ export class GameService
      * Whether the game is currently paused
      */
     paused!: boolean;
+
+    /**
+     * The placement mode that is currently active. Decides how tile placements are handled.
+     */
+    placementMode!: PlacementMode;
 
     constructor() {
         this.reset();
@@ -147,6 +153,7 @@ export class GameService
         this.turn = 1;
         this.currentPlayer = 0;
         this.paused = false;
+        this.placementMode = PlacementMode.Normal;
     }
 
     /**
@@ -163,18 +170,23 @@ export class GameService
         tile.owner = this.players[this.currentPlayer];
 
         // Calculate placement advantages
-        console.log(`Placement issued ${this.placementAdvantages(tile)} advantages`);
-
-        // Start next turn
-        this.nextPlayer();
+        const advantages = this.placementAdvantages(tile);
+        if (advantages > 0) {
+            this.placementMode = PlacementMode.LargeTile;
+            this.highlightCapturableTiles();
+        }
+        else this.nextPlayer(); // Start next turn
     }
 
     /**
      * This player sets the "currentPlayer" variable equal to the next player to take its turn, and increments the
-     * "turn" variable if needed.
+     * `turn` variable if needed.
      */
     nextPlayer(): void
     {
+        // Reset placement mode
+        this.placementMode = PlacementMode.Normal;
+
         // Increment current player
         if (this.currentPlayer == 0) this.currentPlayer++;
         else

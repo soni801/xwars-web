@@ -2,6 +2,7 @@ import {Component, HostListener, Input} from '@angular/core';
 import {Tile} from "../models/tile.models";
 import {LargeTilePart} from "../types/large-tile-part";
 import {GameService} from "../game.service";
+import {PlacementMode} from "../types/placement-mode";
 
 @Component({
     selector: 'app-tile',
@@ -30,13 +31,19 @@ export class TileComponent
 
     @HostListener('mousemove', ['$event'])
     onMouseMove(event: MouseEvent): void {
+        // Don't do anything unless the placement mode is set to large tile
+        if (this.gameService.placementMode !== PlacementMode.LargeTile) return;
+
+        // This variable stores which corner of the tile the mouse hovers
         let newMousePosition: LargeTilePart;
 
+        // Calculate the proper value for newMousePosition
         if (event.layerX < 16 && event.layerY < 16 && this.mousePosition) newMousePosition = LargeTilePart.TopLeft;
         else if (event.layerX < 16) newMousePosition = LargeTilePart.BottomLeft;
         else if (event.layerY < 16) newMousePosition = LargeTilePart.TopRight;
         else newMousePosition = LargeTilePart.BottomRight;
 
+        // If mouse position changed, update the large tile hover data
         if (newMousePosition !== this.mousePosition) {
             this.mousePosition = newMousePosition;
             this.updateLargeTileHoverData();
