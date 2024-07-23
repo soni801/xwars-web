@@ -163,19 +163,26 @@ export class GameService
      */
     takeTile(tile: Tile): void
     {
-        // Don't let the player claim the tile if it's not highlighted
-        if (!tile.highlighted) return;
+        switch (this.placementMode) {
+            case PlacementMode.Normal:
+                // Don't let the player claim the tile if it's not highlighted
+                if (!tile.highlighted) return;
 
-        // Set the ownership of the tile
-        tile.owner = this.players[this.currentPlayer];
+                // Set the ownership of the tile
+                tile.owner = this.players[this.currentPlayer];
 
-        // Calculate placement advantages
-        const advantages = this.placementAdvantages(tile);
-        if (advantages > 0) {
-            this.placementMode = PlacementMode.LargeTile;
-            this.highlightCapturableTiles();
+                // Calculate placement advantages
+                const advantages = this.placementAdvantages(tile);
+                if (advantages > 0) {
+                    this.placementMode = PlacementMode.LargeTile;
+                    this.highlightCapturableTiles();
+                }
+                else this.nextPlayer(); // Start next turn
+                break;
+            case PlacementMode.LargeTile: // TODO: Implement these
+                break;
+            case PlacementMode.Mine:
         }
-        else this.nextPlayer(); // Start next turn
     }
 
     /**
