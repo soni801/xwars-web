@@ -57,7 +57,63 @@
             mask-size: 200%;
             mask-position: bottom right;
         }
+    }
 
+    // TODO: This is a really really really bad way of doing this, but it works for now
+    .large-x-hover
+    {
+        display: none;
+        background: currentColor;
+        height: 100%;
+        mask-image: url("/assets/player-marker.png");
+        mask-size: 200%;
+        image-rendering: pixelated;
+
+        // '2px' is just copied from styles.scss (the ".border" selector). This is a horrible way to do this.
+        $border-offset: 2px;
+
+        &.TopLeft
+        {
+            display: block;
+
+            padding-bottom: $border-offset;
+            margin-right: -$border-offset;
+
+            mask-position: top left;
+
+        }
+
+        &.TopRight
+        {
+            display: block;
+
+            padding-bottom: $border-offset;
+            margin-left: -$border-offset;
+
+            mask-position: top right;
+        }
+
+        &.BottomLeft
+        {
+            display: block;
+
+            padding-bottom: $border-offset;
+            margin-top: -$border-offset;
+            margin-right: -$border-offset;
+
+            mask-position: bottom left;
+        }
+
+        &.BottomRight
+        {
+            display: block;
+
+            padding-bottom: $border-offset;
+            margin-top: -$border-offset;
+            margin-left: -$border-offset;
+
+            mask-position: bottom right;
+        }
     }
 
     // "Highlight" that is enabled when the tile is able to be captured by a player

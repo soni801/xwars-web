@@ -57,7 +57,8 @@ export class GameComponent implements OnInit {
                     left: false,
                     right: false
                 },
-                largeTilePart: LargeTilePart.NoLargeTile
+                largeTilePart: LargeTilePart.NoLargeTile,
+                largeTileHover: true
             });
             this.gameService.tiles.push(row);
         }

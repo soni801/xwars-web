@@ -40,4 +40,9 @@ export interface Tile
      * large X.
      */
     largeTilePart: LargeTilePart;
+
+    /**
+     * Whether `largeTilePart` is only being used for hover or if it has been fully placed.
+     */
+    largeTileHover: boolean;
 }
