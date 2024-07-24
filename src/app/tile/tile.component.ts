@@ -75,8 +75,8 @@ export class TileComponent
         for (let x = 0; x < 2; x++) {
             for (let y = 0; y < 2; y++) {
                 // Don't iterate over invalid tile positions
-                if (this.tile.position.x + x < 0 || this.tile.position.x + x >= this.gameService.board.width) continue;
-                if (this.tile.position.y + y < 0 || this.tile.position.y + y >= this.gameService.board.height) continue;
+                if (startX + x < 0 || startX + x >= this.gameService.board.width) continue;
+                if (startY + y < 0 || startY + y >= this.gameService.board.height) continue;
 
                 // Store a reference to the adjacent tile
                 const adjacentTile = this.gameService.tiles[startY + y][startX + x];
