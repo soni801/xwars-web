@@ -275,41 +275,82 @@ export class GameService
      */
     highlightCapturableTiles(): void {
         // Clear highlight of all tiles
+        // TODO: It's possible to keep this highlight and only update the tiles around the last captured tile when calculating for the same player, e.g. when entering large X placement
         this.tiles.forEach(tileRow => {
             tileRow.forEach(tile => {
                 tile.highlighted = null;
             });
         });
 
-        // Get all tiles that are owned by the current player (both normal tiles and foundations)
+        // Highlight all tiles that are owned by the current player (both normal tiles and foundations)
         this.tiles.forEach(tileRow => {
             tileRow.filter(tile => tile.owner === this.players[this.currentPlayer] || tile.foundation.owner === this.players[this.currentPlayer]).forEach(tile => {
                 // Check all surrounding tiles
-                for (let i = 0; i < 3; i++) {
-                    for (let j = 0; j < 3; j++) {
+                for (let i = -1; i < 2; i++) {
+                    for (let j = -1; j < 2; j++) {
                         // Get tile position relatively, based on captured tile
-                        const y = this.tiles.indexOf(tileRow) - 1 + i;
-                        const x = tileRow.indexOf(tile) - 1 + j;
+                        const y = tile.position.y + i;
+                        const x = tile.position.x + j;
 
-                        // Stop execution if the position is invalid
-                        if (y < 0 || y >= this.board.height) continue;
-                        if (x < 0 || x >= this.board.width) continue;
+                        // Store a reference to the tile to update
+                        const adjacentTile = this.tiles[y][x];
 
-                        // Get the tile object based on position
-                        const surroundingTile = this.tiles[y][x];
+                        // Stop execution if the tile is invalid
+                        if (adjacentTile === undefined) continue;
 
                         // Stop execution if the tile is already owned
-                        if (surroundingTile.owner) continue;
+                        if (adjacentTile.owner) continue;
 
                         // Stop execution if the tile is the player's own foundation
-                        if (surroundingTile.foundation.owner === this.players[this.currentPlayer]) continue;
+                        if (adjacentTile.foundation.owner === this.players[this.currentPlayer]) continue;
 
                         // If all checks go well, highlight the tile
-                        surroundingTile.highlighted = this.players[this.currentPlayer];
+                        adjacentTile.highlighted = this.players[this.currentPlayer];
                     }
                 }
             });
         });
+
+
+
+        // Also add the next adjacent tile on the same axis if the placement mode is set to large tiles
+        if (this.placementMode === PlacementMode.LargeTile) {
+            // We need to first find all files to update, then update them later. Otherwise, they will be updated while we
+            // are still filtering and that leads to an insane mess
+            const tilesToHighlight: Tile[] = [];
+
+            // Get all highlighted tiles
+            this.tiles.forEach(tileRow => {
+                tileRow.filter(tile => tile.highlighted).forEach(tile => {
+                    // Check all surrounding tiles
+                    for (let i = -1; i < 2; i++) {
+                        for (let j = -1; j < 2; j++) {
+                            // Get tile position relatively, based on captured tile
+                            const y = tile.position.y + i;
+                            const x = tile.position.x + j;
+
+                            // Store a reference to the tile to update
+                            const adjacentTile = this.tiles[y][x];
+
+                            // Stop execution if the tile is invalid
+                            if (adjacentTile === undefined) continue;
+
+                            // Stop execution if the tile is already owned
+                            if (adjacentTile.owner) continue;
+
+                            // Stop execution if the tile is the player's own foundation
+                            if (adjacentTile.foundation.owner === this.players[this.currentPlayer]) continue;
+
+                            // If all checks go well, add the tile to highlight list
+                            tilesToHighlight.push(adjacentTile);
+                        }
+                    }
+                });
+            });
+
+            // Then, highlight all the tiles that need to be highlighted
+            tilesToHighlight.forEach(tile => tile.highlighted = this.players[this.currentPlayer]);
+        }
     }
 
     /**
