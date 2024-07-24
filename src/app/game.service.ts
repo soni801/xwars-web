@@ -3,6 +3,7 @@ import {Player} from "./models/player.models";
 import {Tile} from "./models/tile.models";
 import {GameState} from "./types/game-state";
 import {PlacementMode} from "./types/placement-mode";
+import {LargeTilePart} from "./types/large-tile-part";
 
 @Injectable({
     providedIn: 'root'
@@ -163,11 +164,11 @@ export class GameService
      */
     takeTile(tile: Tile): void
     {
+        // Don't let the player claim the tile if it's not highlighted
+        if (!tile.highlighted) return;
+
         switch (this.placementMode) {
             case PlacementMode.Normal:
-                // Don't let the player claim the tile if it's not highlighted
-                if (!tile.highlighted) return;
-
                 // Set the ownership of the tile
                 tile.owner = this.players[this.currentPlayer];
 
@@ -179,7 +180,19 @@ export class GameService
                 }
                 else this.nextPlayer(); // Start next turn
                 break;
-            case PlacementMode.LargeTile: // TODO: Implement these
+            case PlacementMode.LargeTile:
+                this.tiles.forEach(tr => {
+                    tr.filter(t => t.largeTileHover && t.largeTilePart !== LargeTilePart.NoLargeTile).forEach(t => {
+                        // Set the ownership of the tile
+                        t.owner = this.players[this.currentPlayer];
+
+                        // Mark the tile as not hovering
+                        t.largeTileHover = false;
+                    });
+                });
+
+                // Start next turn
+                this.nextPlayer();
                 break;
             case PlacementMode.Mine:
         }

@@ -5,7 +5,7 @@
     this.tile.foundation.right ? 'color-right' : ''
 ]" style="color: {{this.tile.foundation.owner?.color}}">
     @if (this.tile.owner) {
-        <div class="player-marker" [ngClass]="this.tile.largeTileHover ? LargeTilePart[this.tile.largeTilePart] : ''" style="color: {{this.tile.owner.color}}"></div>
+        <div class="player-marker" [ngClass]="LargeTilePart[this.tile.largeTilePart]" style="color: {{this.tile.owner.color}}"></div>
     } @else if (this.tile.highlighted) {
         <div class="highlighted" style="color: {{this.tile.highlighted.color}}"></div>
     }
