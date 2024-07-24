@@ -51,9 +51,6 @@ export class TileComponent
     }
 
     private updateLargeTileHoverData(): void {
-        // Reset all large tile hover states
-        this.gameService.tiles.forEach(tr => tr.filter(t => t.largeTileHover && t.largeTilePart !== LargeTilePart.NoLargeTile).forEach(t => t.largeTilePart = LargeTilePart.NoLargeTile));
-
         // These variables will be modified according to the tiles that should be updated
         let startX = this.tile.position.x;
         let startY = this.tile.position.y;
@@ -70,6 +67,24 @@ export class TileComponent
             case LargeTilePart.BottomLeft:
                 startX--;
         }
+
+        // Check if the tiles to update are "safe" to update
+        for (let x = 0; x < 2; x++) {
+            for (let y = 0; y < 2; y++) {
+                // Don't iterate over invalid tile positions
+                if (startX + x < 0 || startX + x >= this.gameService.board.width) continue;
+                if (startY + y < 0 || startY + y >= this.gameService.board.height) continue;
+
+                // Store a reference to the adjacent tile
+                const adjacentTile = this.gameService.tiles[startY + y][startX + x];
+
+                // Don't update hover data if the tile is a normal tile owned by a player OR if it is the current player's own foundation
+                if (adjacentTile.owner || adjacentTile.foundation.owner === this.gameService.players[this.gameService.currentPlayer]) return;
+            }
+        }
+
+        // Reset all large tile hover states
+        this.gameService.tiles.forEach(tr => tr.filter(t => t.largeTileHover && t.largeTilePart !== LargeTilePart.NoLargeTile).forEach(t => t.largeTilePart = LargeTilePart.NoLargeTile));
 
         // Iterate over tiles to update
         for (let x = 0; x < 2; x++) {
