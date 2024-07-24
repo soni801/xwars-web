@@ -24,7 +24,7 @@ export class TileComponent
     private mousePosition: LargeTilePart = LargeTilePart.NoLargeTile;
 
     constructor(
-        private gameService: GameService
+        protected gameService: GameService
     ) { }
 
     protected readonly LargeTilePart = LargeTilePart;

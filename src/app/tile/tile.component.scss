@@ -63,8 +63,9 @@
     .large-x-hover
     {
         display: none;
-        background: currentColor;
         height: 100%;
+        background: color-mix(in srgb, currentColor 20%, transparent);
+
         mask-image: url("/assets/player-marker.png");
         mask-size: 200%;
         image-rendering: pixelated;

@@ -11,7 +11,7 @@
     }
 
     @if (this.tile.largeTileHover) {
-        <div class="large-x-hover" [ngClass]="LargeTilePart[this.tile.largeTilePart]"></div>
+        <div class="large-x-hover" [ngClass]="LargeTilePart[this.tile.largeTilePart]" style="color: {{this.gameService.players[this.gameService.currentPlayer].color}}"></div>
     }
 
     <!-- Debug position text -->
