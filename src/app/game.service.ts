@@ -242,6 +242,10 @@ export class GameService
 
                 // Check if the tile is owned by the current player
                 if (adjacentTile.owner === this.players[this.currentPlayer]) {
+                    // Make sure the next tile on the same axis isn't invalid
+                    if (this.tiles[adjacentTile.position.y + y] === undefined) continue;
+                    if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x] === undefined) continue;
+
                     // Check if the next tile on the same axis is also owned by the current player
                     if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].owner === this.players[this.currentPlayer]) {
                         // TODO: Implement checks for which tiles are allowed to use for advantages
@@ -292,10 +296,13 @@ export class GameService
                         const y = tile.position.y + i;
                         const x = tile.position.x + j;
 
+                        // Don't attempt declaring a variable from an invalid tile row
+                        if (this.tiles[y] === undefined) continue;
+
                         // Store a reference to the tile to update
                         const adjacentTile = this.tiles[y][x];
 
-                        // Stop execution if the tile is invalid
+                        // Don't try to highlight the tile if it is invalid
                         if (adjacentTile === undefined) continue;
 
                         // Stop execution if the tile is already owned
