@@ -253,25 +253,29 @@ export class GameService
                 // Store a reference to the adjacent tile to test
                 const adjacentTile = this.tiles[tile.position.y + y][tile.position.x + x];
 
-                // Check if the tile is owned by the current player
-                if (adjacentTile.owner === this.players[this.currentPlayer]) {
-                    // Make sure the next tile on the same axis isn't invalid
-                    if (this.tiles[adjacentTile.position.y + y] === undefined) continue;
-                    if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x] === undefined) continue;
+                // Ignore the tile if it is not owned by the current player
+                if (adjacentTile.owner !== this.players[this.currentPlayer]) continue;
 
-                    // Check if the next tile on the same axis is also owned by the current player
-                    if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].owner === this.players[this.currentPlayer]) {
-                        // TODO: Implement checks for which tiles are allowed to use for advantages
-                        advantages++;
-                    } else {
-                        // The adjacent tile does not have another tile next to it in the same direction, but may still
-                        // be relevant to check later if there is a tile opposite to it
-                        // TODO: There must be a cleaner way of implementing this (for example trying to get a number based on x and y? binary encoding?)
-                        if (x === 0) adjacentTilesDirection.vertical++;
-                        else if (y === 0) adjacentTilesDirection.horizontal++;
-                        else if ((x === -1 && y === -1) || (x === 1 && y === 1)) adjacentTilesDirection.diagonalTopLeft++;
-                        else adjacentTilesDirection.diagonalTopRight++;
-                    }
+                // Ignore tile if it is a part of a large tile
+                if (adjacentTile.largeTilePart !== LargeTilePart.NoLargeTile) continue;
+
+                // Make sure the next tile on the same axis isn't invalid
+                if (this.tiles[adjacentTile.position.y + y] === undefined) continue;
+                if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x] === undefined) continue;
+
+                // Check if the next tile on the same axis is also owned by the current player and not part of a large tile
+                // Man this is such an unreadable mess
+                if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].owner === this.players[this.currentPlayer] && this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].largeTilePart === LargeTilePart.NoLargeTile) {
+                    // TODO: Implement checks for which tiles are allowed to use for advantages
+                    advantages++;
+                } else {
+                    // The adjacent tile does not have another tile next to it in the same direction, but may still
+                    // be relevant to check later if there is a tile opposite to it
+                    // TODO: There must be a cleaner way of implementing this (for example trying to get a number based on x and y? binary encoding?)
+                    if (x === 0) adjacentTilesDirection.vertical++;
+                    else if (y === 0) adjacentTilesDirection.horizontal++;
+                    else if ((x === -1 && y === -1) || (x === 1 && y === 1)) adjacentTilesDirection.diagonalTopLeft++;
+                    else adjacentTilesDirection.diagonalTopRight++;
                 }
             }
         }
