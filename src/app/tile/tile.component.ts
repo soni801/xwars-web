@@ -71,15 +71,14 @@ export class TileComponent
         // Check if the tiles to update are "safe" to update
         for (let x = 0; x < 2; x++) {
             for (let y = 0; y < 2; y++) {
-                // Don't iterate over invalid tile positions
-                if (startX + x < 0 || startX + x >= this.gameService.board.width) continue;
-                if (startY + y < 0 || startY + y >= this.gameService.board.height) continue;
-
                 // Store a reference to the adjacent tile
                 const adjacentTile = this.gameService.tiles[startY + y][startX + x];
 
-                // Don't update hover data if the tile is a normal tile owned by a player OR if it is the current player's own foundation
-                if (adjacentTile.owner || adjacentTile.foundation.owner === this.gameService.players[this.gameService.currentPlayer]) return;
+                // Don't update any hover data if the tile is invalid
+                if (adjacentTile === undefined) return;
+
+                // Don't update any hover data if the tile isn't highlighted
+                if (adjacentTile.highlighted !== this.gameService.players[this.gameService.currentPlayer]) return;
             }
         }
 
@@ -89,10 +88,6 @@ export class TileComponent
         // Iterate over tiles to update
         for (let x = 0; x < 2; x++) {
             for (let y = 0; y < 2; y++) {
-                // Don't iterate over invalid tile positions
-                if (startX + x < 0 || startX + x >= this.gameService.board.width) continue;
-                if (startY + y < 0 || startY + y >= this.gameService.board.height) continue;
-
                 // Store a reference to the adjacent tile
                 const adjacentTile = this.gameService.tiles[startY + y][startX + x];
 
