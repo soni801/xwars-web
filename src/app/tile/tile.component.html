@@ -18,6 +18,20 @@
         <div class="large-x-hover" [ngClass]="LargeTilePart[this.tile.largeTilePart]" style="color: {{this.gameService.players[this.gameService.currentPlayer].color}}"></div>
     }
 
+    <!-- Advantage markers -->
+    @if (this.tile.advantageUses.vertical) {
+        <div class="advantage-marker vertical"></div>
+    }
+    @if (this.tile.advantageUses.horizontal) {
+        <div class="advantage-marker horizontal"></div>
+    }
+    @if (this.tile.advantageUses.diagonalTopLeft) {
+        <div class="advantage-marker diagonal-top-left"></div>
+    }
+    @if (this.tile.advantageUses.diagonalTopRight) {
+        <div class="advantage-marker diagonal-top-right"></div>
+    }
+
     <!-- Debug position text -->
     <!-- TODO: Make these toggleable in settings -->
     <!--<p style="margin: 0; padding: 0; font-size: .5rem">x: {{this.tile.position.x}}</p>-->

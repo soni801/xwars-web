@@ -1,3 +1,5 @@
+@use "/src/variables";
+
 :host > div
 {
     // This is needed to make the highlighted thingy work
@@ -135,6 +137,61 @@
         mask-image: url("/assets/player-marker.png");
         mask-size: 100%;
         image-rendering: pixelated;
+    }
+
+    // Line that is displayed when the tile has been used for an advantage in a specific direction
+    .advantage-marker
+    {
+        position: absolute;
+        inset: 0;
+
+        &.vertical
+        {
+            background: linear-gradient(to left,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                variables.$button-foreground calc(50% - 2px),
+                variables.$button-foreground 50%,
+                variables.$button-foreground calc(50% + 2px),
+                transparent calc(50% + 2px),
+                transparent 100%);
+        }
+
+        &.horizontal
+        {
+            background: linear-gradient(to top,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                variables.$button-foreground calc(50% - 2px),
+                variables.$button-foreground 50%,
+                variables.$button-foreground calc(50% + 2px),
+                transparent calc(50% + 2px),
+                transparent 100%);
+        }
+
+        &.diagonal-top-left
+        {
+            background: linear-gradient(to top right,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                variables.$button-foreground calc(50% - 2px),
+                variables.$button-foreground 50%,
+                variables.$button-foreground calc(50% + 2px),
+                transparent calc(50% + 2px),
+                transparent 100%);
+        }
+
+        &.diagonal-top-right
+        {
+            background: linear-gradient(to top left,
+                transparent 0%,
+                transparent calc(50% - 2px),
+                variables.$button-foreground calc(50% - 2px),
+                variables.$button-foreground 50%,
+                variables.$button-foreground calc(50% + 2px),
+                transparent calc(50% + 2px),
+                transparent 100%);
+        }
     }
 }
 
