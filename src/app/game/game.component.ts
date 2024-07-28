@@ -58,7 +58,13 @@ export class GameComponent implements OnInit {
                     right: false
                 },
                 largeTilePart: LargeTilePart.NoLargeTile,
-                largeTileHover: true
+                largeTileHover: true,
+                advantageUses: {
+                    vertical: false,
+                    horizontal: false,
+                    diagonalTopLeft: false,
+                    diagonalTopRight: false
+                }
             });
             this.gameService.tiles.push(row);
         }

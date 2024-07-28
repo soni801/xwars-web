@@ -259,15 +259,43 @@ export class GameService
                 // Ignore tile if it is a part of a large tile
                 if (adjacentTile.largeTilePart !== LargeTilePart.NoLargeTile) continue;
 
+                // Ignore tile if it has already been used to gain an advantage on the same axis
+                if (x === 0 && adjacentTile.advantageUses.vertical) continue;
+                if (y === 0 && adjacentTile.advantageUses.horizontal) continue;
+                if (((x === -1 && y === -1) || (x === 1 && y === 1)) && adjacentTile.advantageUses.diagonalTopLeft) continue;
+                if (adjacentTile.advantageUses.diagonalTopRight) continue;
+
                 // Make sure the next tile on the same axis isn't invalid
                 if (this.tiles[adjacentTile.position.y + y] === undefined) continue;
                 if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x] === undefined) continue;
 
+                // Get the next adjacent tile on the same axis
+                const furtherAdjacentTile = this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x];
+
                 // Check if the next tile on the same axis is also owned by the current player and not part of a large tile
-                // Man this is such an unreadable mess
-                if (this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].owner === this.players[this.currentPlayer] && this.tiles[adjacentTile.position.y + y][adjacentTile.position.x + x].largeTilePart === LargeTilePart.NoLargeTile) {
+                if (furtherAdjacentTile.owner === this.players[this.currentPlayer] && furtherAdjacentTile.largeTilePart === LargeTilePart.NoLargeTile) {
                     // TODO: Implement checks for which tiles are allowed to use for advantages
                     advantages++;
+
+                    // Update tiles with advantage use info
+                    if (x === 0) {
+                        tile.advantageUses.vertical = true;
+                        adjacentTile.advantageUses.vertical = true;
+                        furtherAdjacentTile.advantageUses.vertical = true;
+                    } else if (y === 0) {
+                        tile.advantageUses.horizontal = true;
+                        adjacentTile.advantageUses.horizontal = true;
+                        furtherAdjacentTile.advantageUses.horizontal = true;
+                    } else if ((x === -1 && y === -1) || (x === 1 && y === 1)) {
+                        tile.advantageUses.diagonalTopLeft = true;
+                        adjacentTile.advantageUses.diagonalTopLeft = true;
+                        furtherAdjacentTile.advantageUses.diagonalTopLeft = true;
+                    }
+                    else {
+                        tile.advantageUses.diagonalTopRight = true;
+                        adjacentTile.advantageUses.diagonalTopRight = true;
+                        furtherAdjacentTile.advantageUses.diagonalTopRight = true;
+                    }
                 } else {
                     // The adjacent tile does not have another tile next to it in the same direction, but may still
                     // be relevant to check later if there is a tile opposite to it
@@ -283,10 +311,38 @@ export class GameService
         // Check whether additional advantages should be issues based on cental tile placement (adjacent tiles in both
         // directions on same axis where neither have another tile next to them on the same axis
         // TODO: This can also be improved if/when changing the way adjacent tiles are stored
-        if (adjacentTilesDirection.vertical > 1) advantages++;
-        if (adjacentTilesDirection.horizontal > 1) advantages++;
-        if (adjacentTilesDirection.diagonalTopLeft > 1) advantages++;
-        if (adjacentTilesDirection.diagonalTopRight > 1) advantages++;
+        if (adjacentTilesDirection.vertical > 1) {
+            advantages++;
+
+            // Update tiles with advantage use info
+            tile.advantageUses.vertical = true;
+            this.tiles[tile.position.y - 1][tile.position.x].advantageUses.vertical = true;
+            this.tiles[tile.position.y + 1][tile.position.x].advantageUses.vertical = true;
+        }
+        if (adjacentTilesDirection.horizontal > 1) {
+            advantages++;
+
+            // Update tiles with advantage use info
+            tile.advantageUses.horizontal = true;
+            this.tiles[tile.position.y][tile.position.x - 1].advantageUses.horizontal = true;
+            this.tiles[tile.position.y][tile.position.x + 1].advantageUses.horizontal = true;
+        }
+        if (adjacentTilesDirection.diagonalTopLeft > 1) {
+            advantages++;
+
+            // Update tiles with advantage use info
+            tile.advantageUses.diagonalTopLeft = true;
+            this.tiles[tile.position.y - 1][tile.position.x - 1].advantageUses.diagonalTopLeft = true;
+            this.tiles[tile.position.y + 1][tile.position.x + 1].advantageUses.diagonalTopLeft = true;
+        }
+        if (adjacentTilesDirection.diagonalTopRight > 1) {
+            advantages++;
+
+            // Update tiles with advantage use info
+            tile.advantageUses.diagonalTopRight = true;
+            this.tiles[tile.position.y - 1][tile.position.x + 1].advantageUses.diagonalTopRight = true;
+            this.tiles[tile.position.y + 1][tile.position.x - 1].advantageUses.diagonalTopRight = true;
+        }
 
         return advantages;
     }

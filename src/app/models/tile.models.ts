@@ -45,4 +45,15 @@ export interface Tile
      * Whether `largeTilePart` is only being used for hover or if it has been fully placed.
      */
     largeTileHover: boolean;
+
+    /**
+     * The directions of which this tile has already been used for an advantage. This is used to assure that the same
+     * tile cannot be used too much illegally.
+     */
+    advantageUses: {
+        vertical: boolean;
+        horizontal: boolean;
+        diagonalTopLeft: boolean;
+        diagonalTopRight: boolean;
+    };
 }
