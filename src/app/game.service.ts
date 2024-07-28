@@ -274,7 +274,7 @@ export class GameService
                 if (x === 0 && adjacentTile.advantageUses.vertical) continue;
                 if (y === 0 && adjacentTile.advantageUses.horizontal) continue;
                 if (((x === -1 && y === -1) || (x === 1 && y === 1)) && adjacentTile.advantageUses.diagonalTopLeft) continue;
-                if (adjacentTile.advantageUses.diagonalTopRight) continue;
+                if (((x === -1 && y === 1) || (x === 1 && y === -1)) && adjacentTile.advantageUses.diagonalTopRight) continue;
 
                 // Make sure the next tile on the same axis isn't invalid
                 if (this.tiles[adjacentTile.position.y + y] === undefined) continue;
