@@ -8,6 +8,10 @@
         <div class="player-marker" [ngClass]="LargeTilePart[this.tile.largeTilePart]" style="color: {{this.tile.owner.color}}"></div>
     } @else if (this.tile.highlighted) {
         <div class="highlighted" style="color: {{this.tile.highlighted.color}}"></div>
+
+        @if (this.hovering) {
+            <div class="hover-marker" style="color: {{this.tile.highlighted.color}}"></div>
+        }
     }
 
     @if (this.tile.largeTileHover) {

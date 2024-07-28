@@ -17,6 +17,11 @@ export class TileComponent
     @Input() tile!: Tile;
 
     /**
+     * Whether the mouse is currently hovering over this tile
+     */
+    hovering: boolean = false;
+
+    /**
      * The mouse position relative to the tile. Uses `LargeTilePart.NoLargeTile` as the default value.
      *
      * @private
@@ -31,8 +36,11 @@ export class TileComponent
 
     @HostListener('mousemove', ['$event'])
     onMouseMove(event: MouseEvent): void {
-        // Don't do anything unless the placement mode is set to large tile
-        if (this.gameService.placementMode !== PlacementMode.LargeTile) return;
+        // Only set the 'hovering' variable if the placement mode is not set to large tile
+        if (this.gameService.placementMode !== PlacementMode.LargeTile) {
+            this.hovering = true;
+            return;
+        }
 
         // This variable stores which corner of the tile the mouse hovers
         let newMousePosition: LargeTilePart;
@@ -48,6 +56,11 @@ export class TileComponent
             this.mousePosition = newMousePosition;
             this.updateLargeTileHoverData();
         }
+    }
+
+    @HostListener('mouseleave', ['$event'])
+    onMouseLeave(): void {
+        this.hovering = false;
     }
 
     private updateLargeTileHoverData(): void {
