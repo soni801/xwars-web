@@ -409,6 +409,9 @@ export class GameService
                             const y = tile.position.y + i;
                             const x = tile.position.x + j;
 
+                            // Don't attempt declaring a variable from an invalid tile row
+                            if (this.tiles[y] === undefined) continue;
+
                             // Store a reference to the tile to update
                             const adjacentTile = this.tiles[y][x];
 

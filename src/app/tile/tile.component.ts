@@ -71,6 +71,9 @@ export class TileComponent
         // Check if the tiles to update are "safe" to update
         for (let x = 0; x < 2; x++) {
             for (let y = 0; y < 2; y++) {
+                // Don't attempt declaring a variable from an invalid tile row
+                if (this.gameService.tiles[startY + y] === undefined) return;
+
                 // Store a reference to the adjacent tile
                 const adjacentTile = this.gameService.tiles[startY + y][startX + x];
 
