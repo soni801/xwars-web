@@ -53,6 +53,11 @@ export class GameService
      */
     placementMode!: PlacementMode;
 
+    /**
+     * How many advantages the current player has left to use
+     */
+    advantages!: number;
+
     constructor() {
         this.reset();
     }
@@ -155,6 +160,7 @@ export class GameService
         this.currentPlayer = 0;
         this.paused = false;
         this.placementMode = PlacementMode.Normal;
+        this.advantages = 0;
     }
 
     /**
@@ -172,15 +178,11 @@ export class GameService
                 // Set the ownership of the tile
                 tile.owner = this.players[this.currentPlayer];
 
-                // Calculate placement advantages
-                const advantages = this.placementAdvantages(tile);
-                if (advantages > 0) {
-                    this.placementMode = PlacementMode.LargeTile;
-                    this.highlightCapturableTiles();
-                }
-                else this.nextPlayer(); // Start next turn
+                // Update placement advantages
+                this.advantages = this.placementAdvantages(tile);
                 break;
             case PlacementMode.LargeTile:
+                // Set the ownership of the highlighted tiles
                 this.tiles.forEach(tr => {
                     tr.filter(t => t.largeTileHover && t.largeTilePart !== LargeTilePart.NoLargeTile).forEach(t => {
                         // Set the ownership of the tile
@@ -191,11 +193,20 @@ export class GameService
                     });
                 });
 
-                // Start next turn
-                this.nextPlayer();
+                // Decrement advantages
+                this.advantages--;
                 break;
             case PlacementMode.Mine:
         }
+
+        console.log(this.advantages);
+
+        // Let player place large tiles or start next turn, depending on whether the player has any advantages left
+        if (this.advantages > 0) {
+            this.placementMode = PlacementMode.LargeTile;
+            this.highlightCapturableTiles();
+        }
+        else this.nextPlayer(); // Start next turn
     }
 
     /**
