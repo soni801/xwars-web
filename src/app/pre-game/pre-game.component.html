@@ -1,22 +1,32 @@
-<div id="color-picker-1"></div>
+<!-- Player settings -->
+<div id="players-display">
+    <div class="player-settings">
+        <div id="color-picker-1"></div>
+        <div class="player-summary">
+            <div class="player-avatar" style="color: {{gameService.players[0].color}}"></div>
+            <input [(ngModel)]="gameService.players[0].name">
+        </div>
+    </div>
 
-<div class="player-info">
-    <div class="player-avatar" style="color: {{gameService.players[0].color}}"></div>
-    <input [(ngModel)]="gameService.players[0].name">
+    <h1>VS</h1>
+
+    <div class="player-settings">
+        <div id="color-picker-2"></div>
+        <div class="player-summary">
+            <div class="player-avatar" style="color: {{gameService.players[1].color}}"></div>
+            <input [(ngModel)]="gameService.players[1].name">
+        </div>
+    </div>
 </div>
 
-<a class="button" (click)="startGame()">Start</a>
-
-<div class="player-info">
-    <div class="player-avatar" style="color: {{gameService.players[1].color}}"></div>
-    <input [(ngModel)]="gameService.players[1].name">
-</div>
-
-<div id="color-picker-2"></div>
-
+<!-- Board settings -->
 <h2>Board size</h2>
 <div id="board-settings">
     <input type="number" min="5" max="100" [(ngModel)]="gameService.board.width" (keydown)="blockNonNumericValues($event)" (keyup)="gameService.board.width = clamp(gameService.board.width, 5, 100)">
     <p>x</p>
     <input type="number" min="5" max="100" [(ngModel)]="gameService.board.height" (keydown)="blockNonNumericValues($event)" (keyup)="gameService.board.height = clamp(gameService.board.height, 5, 100)">
 </div>
+
+<!-- Menu -->
+<a class="button" (click)="startGame()">Start</a>
+<a class="button" routerLink="/home">Back</a>
