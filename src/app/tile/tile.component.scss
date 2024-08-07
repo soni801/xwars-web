@@ -14,8 +14,11 @@
     {
         background: currentColor;
         height: 100%;
+
         mask-image: url("/assets/player-marker.png");
+        -webkit-mask-image: url("/assets/player-marker.png");
         mask-size: 100%;
+        -webkit-mask-size: 100%;
         image-rendering: pixelated;
 
         // '2px' is just copied from styles.scss (the ".border" selector). This is a horrible way to do this.
@@ -27,7 +30,9 @@
             margin-right: -$border-offset;
 
             mask-size: 200%;
+            -webkit-mask-size: 200%;
             mask-position: top left;
+            -webkit-mask-position: top left;
 
         }
 
@@ -37,7 +42,9 @@
             margin-left: -$border-offset;
 
             mask-size: 200%;
+            -webkit-mask-size: 200%;
             mask-position: top right;
+            -webkit-mask-position: top right;
         }
 
         &.BottomLeft
@@ -47,7 +54,9 @@
             margin-right: -$border-offset;
 
             mask-size: 200%;
+            -webkit-mask-size: 200%;
             mask-position: bottom left;
+            -webkit-mask-position: bottom left;
         }
 
         &.BottomRight
@@ -57,7 +66,9 @@
             margin-left: -$border-offset;
 
             mask-size: 200%;
+            -webkit-mask-size: 200%;
             mask-position: bottom right;
+            -webkit-mask-position: bottom right;
         }
     }
 
@@ -69,7 +80,9 @@
         background: color-mix(in srgb, currentColor 20%, transparent);
 
         mask-image: url("/assets/player-marker.png");
+        -webkit-mask-image: url("/assets/player-marker.png");
         mask-size: 200%;
+        -webkit-mask-size: 200%;
         image-rendering: pixelated;
 
         // '2px' is just copied from styles.scss (the ".border" selector). This is a horrible way to do this.
@@ -83,6 +96,7 @@
             margin-right: -$border-offset;
 
             mask-position: top left;
+            -webkit-mask-position: top left;
 
         }
 
@@ -94,6 +108,7 @@
             margin-left: -$border-offset;
 
             mask-position: top right;
+            -webkit-mask-position: top right;
         }
 
         &.BottomLeft
@@ -105,6 +120,7 @@
             margin-right: -$border-offset;
 
             mask-position: bottom left;
+            -webkit-mask-position: bottom left;
         }
 
         &.BottomRight
@@ -116,6 +132,7 @@
             margin-left: -$border-offset;
 
             mask-position: bottom right;
+            -webkit-mask-position: bottom right;
         }
     }
 
@@ -135,7 +152,9 @@
         background: color-mix(in srgb, currentColor 20%, transparent);
 
         mask-image: url("/assets/player-marker.png");
+        -webkit-mask-image: url("/assets/player-marker.png");
         mask-size: 100%;
+        -webkit-mask-size: 100%;
         image-rendering: pixelated;
     }
 
