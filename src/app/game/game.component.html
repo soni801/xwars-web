@@ -18,4 +18,9 @@
         <h3>Current player</h3>
         <h1>{{this.gameService.players[this.gameService.currentPlayer].name}}</h1>
     </div>
+
+    <!-- Advantage info -->
+    @if (this.gameService.advantages > 0) {
+        <p>You have {{ this.gameService.advantages }} large {{ this.gameService.advantages === 1 ? 'tile' : 'tiles' }} to place</p>
+    }
 </div>
