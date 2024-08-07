@@ -2,6 +2,9 @@
 
 #game-stats
 {
+    // The size of the top border
+    $border-size: 8px;
+
     display: flex;
     justify-content: space-between;
     position: absolute;
@@ -10,16 +13,16 @@
     padding: 1rem 2rem;
     box-sizing: border-box;
     background: variables.$background-alternative;
-    border-top: 8px solid variables.$border-color;
+    border-top: $border-size solid variables.$border-color;
 
     // Player color gradient
     #gradient
     {
         position: absolute;
-        top: -8px;
+        top: -$border-size;
         left: 0;
         width: 50%;
-        height: 8px;
+        height: $border-size;
     }
 
     // 'Current player' text
