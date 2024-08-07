@@ -1,9 +1,37 @@
 @use '../../variables';
 
+// Logo
+#logo
+{
+    display: grid;
+
+    img
+    {
+        // Place images on top of each other
+        grid-area: 1 / 1;
+
+        // Sizing
+        width: 100px;
+        height: 100px;
+        image-rendering: pixelated;
+    }
+
+    .blurred
+    {
+        filter: blur(1rem);
+        opacity: .5;
+    }
+}
+
+h1
+{
+    margin: 30px 0 0;
+}
+
 #version-data
 {
     color: variables.$button-foreground;
-    transform: translateY(-3rem);
+    margin-bottom: 100px;
 }
 
 #navigation

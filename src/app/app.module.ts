@@ -15,6 +15,7 @@ import {PreGameComponent} from "./pre-game/pre-game.component";
 import {FormsModule} from "@angular/forms";
 import {PauseComponent} from "./pause/pause.component";
 import {ChangelogComponent} from "./changelog/changelog.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {ChangelogComponent} from "./changelog/changelog.component";
         AppRoutingModule,
         BrowserModule,
         DragDropModule,
-        FormsModule
+        FormsModule,
+        NgOptimizedImage
     ],
   providers: [],
   bootstrap: [AppComponent]
