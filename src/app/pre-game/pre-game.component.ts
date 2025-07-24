@@ -8,7 +8,8 @@ import ColorPicker = iro.ColorPicker;
 @Component({
   selector: 'app-pre-game',
   templateUrl: './pre-game.component.html',
-  styleUrl: './pre-game.component.scss'
+  styleUrl: './pre-game.component.scss',
+  standalone: false
 })
 export class PreGameComponent implements AfterViewInit {
     constructor(

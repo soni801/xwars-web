@@ -6,7 +6,8 @@ import {LargeTilePart} from "../types/large-tile-part";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrl: './game.component.scss'
+  styleUrl: './game.component.scss',
+  standalone: false
 })
 export class GameComponent implements OnInit {
     /**

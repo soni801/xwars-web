@@ -5,7 +5,8 @@ import {GameState} from "../types/game-state";
 @Component({
     selector: 'app-play',
     templateUrl: './play.component.html',
-    styleUrls: ['./play.component.scss']
+    styleUrls: ['./play.component.scss'],
+    standalone: false
 })
 export class PlayComponent {
     constructor(

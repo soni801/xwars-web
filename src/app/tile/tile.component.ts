@@ -7,7 +7,8 @@ import {PlacementMode} from "../types/placement-mode";
 @Component({
     selector: 'app-tile',
     templateUrl: './tile.component.html',
-    styleUrls: ['./tile.component.scss']
+    styleUrls: ['./tile.component.scss'],
+    standalone: false
 })
 export class TileComponent
 {

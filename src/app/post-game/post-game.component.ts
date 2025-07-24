@@ -5,7 +5,8 @@ import {GameService} from "../game.service";
 @Component({
   selector: 'app-post-game',
   templateUrl: './post-game.component.html',
-  styleUrl: './post-game.component.scss'
+  styleUrl: './post-game.component.scss',
+  standalone: false
 })
 export class PostGameComponent {
     @Input({ required: true }) winner!: Player | null;
