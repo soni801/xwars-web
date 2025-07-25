@@ -4,7 +4,7 @@
   <div>
     <p>Players:</p>
     @for (player of socketPlayers; track player) {
-      <p style="color: {{ player.color }}">{{ player.name }}</p>
+      <p style="color: {{ player.color }}">{{ player.name }} - {{ player.ready }}</p>
     }
   </div>
 </div>
@@ -17,7 +17,8 @@
 <!-- Lobby controls -->
 <a class="button" (click)="createLobby()">Create lobby</a>
 <a class="button" (click)="joinLobby()">Join lobby</a>
+<a class="button" (click)="leaveLobby()">Leave lobby</a>
 
 <!-- Menu -->
-<a class="button">Start</a>
+<a class="button" (click)="toggleReady()">{{ ready ? 'Unready' : 'Ready' }}</a>
 <a class="button" routerLink="/home">Back</a>

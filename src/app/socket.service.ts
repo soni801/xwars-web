@@ -14,7 +14,21 @@ export class SocketService {
     });
   }
 
-  sendMessage(event: string, message: Object): Promise<any> {
+  getSocketId(): Promise<string> {
+    return new Promise((resolve) => {
+      if (this.socket.connected) {
+        if (!this.socket.id) throw new Error('Socket ID is not set. This should never happen.');
+        resolve(this.socket.id);
+      } else {
+        this.socket.on('connect', () => {
+          if (!this.socket.id) throw new Error('Socket ID is not set. This should never happen.');
+          resolve(this.socket.id);
+        });
+      }
+    });
+  }
+
+  sendMessage(event: string, message?: Object): Promise<any> {
     return new Promise((resolve) => {
       this.socket.emit(event, message, (ack: any) => {
         resolve(ack);
