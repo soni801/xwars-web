@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import {SocketService} from "../socket.service";
+import {Player} from "../models/player.models";
 
 @Component({
   selector: 'app-lobby-setup',
@@ -18,13 +19,13 @@ export class LobbySetup implements OnInit {
   playerName: string = '';
   playerColor: string = '';
   socketStatus: string = 'Not connected';
-  socketPlayers: string = '';
+  socketPlayers: Player[] = [];
 
   constructor(private socketService: SocketService) {}
 
   ngOnInit(): void {
     this.socketService.onMessage('join', (message: any) => {
-      this.socketPlayers += JSON.stringify(message.player);
+      this.socketPlayers.push(message.player);
     });
   }
 
@@ -32,7 +33,7 @@ export class LobbySetup implements OnInit {
     this.socketService.sendMessage('create', {"name": this.playerName, "color": this.playerColor}).then(ack => {
       this.lobbyCode = ack.code;
       this.socketStatus = 'Connected';
-      this.socketPlayers = JSON.stringify(ack.players);
+      this.socketPlayers = ack.players;
     });
   }
 
@@ -40,7 +41,9 @@ export class LobbySetup implements OnInit {
     this.socketService.sendMessage('join', {"code": this.lobbyCode, "player": {"name": this.playerName, "color": this.playerColor}}).then(ack => {
       console.log(ack);
       this.socketStatus = 'Connected';
-      this.socketPlayers = JSON.stringify(ack.players);
+      this.socketPlayers = ack.players;
     });
   }
+
+  protected readonly JSON = JSON;
 }

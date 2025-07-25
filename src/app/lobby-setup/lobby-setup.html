@@ -1,7 +1,12 @@
 <!-- Current players -->
 <div>
   <p>Status: {{ socketStatus }}</p>
-  <p>Players: {{ socketPlayers }}</p>
+  <div>
+    <p>Players:</p>
+    @for (player of socketPlayers; track player) {
+      <p style="color: {{ player.color }}">{{ player.name }}</p>
+    }
+  </div>
 </div>
 
 <!-- Player options -->
