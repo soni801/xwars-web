@@ -5,6 +5,7 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 import {PlayComponent} from "./play/play.component";
 import {AboutComponent} from "./about/about.component";
 import {ChangelogComponent} from "./changelog/changelog.component";
+import {LobbySetup} from "./lobby-setup/lobby-setup";
 
 const routes: Routes = [
     {
@@ -20,6 +21,11 @@ const routes: Routes = [
     {
         path: 'play',
         component: PlayComponent,
+        title: 'The Great X Wars'
+    },
+    {
+        path: 'lobby-setup',
+        component: LobbySetup,
         title: 'The Great X Wars'
     },
     {

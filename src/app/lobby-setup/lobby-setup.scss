@@ -1,0 +1,27 @@
+@use "../../variables";
+
+:host
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    height: 100vh;
+}
+
+input
+{
+    width: 10rem;
+    padding: .5rem 1rem;
+
+    background: none;
+    color: variables.$foreground;
+
+    font-family: "uni 05_53", sans-serif;
+    font-size: 1.5rem;
+
+    border: 2px solid variables.$button-foreground;
+    outline: none;
+}
