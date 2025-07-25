@@ -1,7 +1,17 @@
+<!-- Current players -->
+<div>
+  <p>Status: {{ socketStatus }}</p>
+  <p>Players: {{ socketPlayers }}</p>
+</div>
+
+<!-- Player options -->
+<input type="text" placeholder="Lobby code" [(ngModel)]="lobbyCode">
+<input type="text" placeholder="Name" [(ngModel)]="playerName">
+<input type="text" placeholder="Color" [(ngModel)]="playerColor">
+
 <!-- Lobby controls -->
-<a class="button">Create lobby</a>
-<a class="button">Join lobby</a>
-<input type="text" placeholder="Lobby code">
+<a class="button" (click)="createLobby()">Create lobby</a>
+<a class="button" (click)="joinLobby()">Join lobby</a>
 
 <!-- Menu -->
 <a class="button">Start</a>
